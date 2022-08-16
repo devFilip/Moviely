@@ -1,11 +1,9 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import HomePage from "./components/pages/HomePage/HomePage";
 
 function App() {
   return (
     <div className="App">
-   <h1>Moveliy</h1>
+      <HomePage />
     </div>
   );
 }
