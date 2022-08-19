@@ -4,7 +4,7 @@ import HomePage from "./components/pages/HomePage/HomePage";
 function App() {
   return (
     <div className="App">
-      <NavBar />
+      <NavBar role="admin" />
       <HomePage />
     </div>
   );
