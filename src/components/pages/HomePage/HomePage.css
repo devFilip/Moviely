@@ -1,0 +1,7 @@
+.homePage {
+  background: var(--background-color-primary);
+  border-radius: var(--border-radius);
+  margin: 5rem auto 5rem; /* trbl   */
+  height: 50vh;
+  width: 50vw;
+}

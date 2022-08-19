@@ -1,11 +1,8 @@
-import React from "react";
+import NavBar from "../../NavBar/NavBar";
+import "./HomePage.css";
 
 const HomePage = () => {
-  return (
-    <div>
-      <h1>Home page</h1>
-    </div>
-  );
+  return <div className="homePage"></div>;
 };
 
 export default HomePage;
