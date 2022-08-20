@@ -1,0 +1,8 @@
+.button {
+  align-items: center;
+  border-radius: var(--border-radius);
+  color: #fff;
+  display: flex;
+  height: 2rem;
+  justify-content: center;
+}
