@@ -1,17 +1,10 @@
 import React from "react";
-import { Comment } from "../../../../models/CommentModel";
-import { Rating } from "../../../../models/RatingsModel";
+import { Movie } from "../../../../models/MovieModel";
 import Button from "../../atoms/Button/Button";
 
 import "./Card.css";
 interface Card {
-  item: {
-    imageUrl: string;
-    title: string;
-    comments: Array<Comment>;
-    ratings: Array<Rating>;
-    description: string;
-  };
+  item: Movie;
 }
 
 const Card: React.FC<Card> = ({ item }) => {

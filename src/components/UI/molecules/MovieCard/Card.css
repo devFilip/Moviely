@@ -2,7 +2,7 @@
   background: var(--background-color-secondary);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow-primary);
-  width: 30%;
+  width: 33%;
   overflow: hidden;
 }
 .card__poster {

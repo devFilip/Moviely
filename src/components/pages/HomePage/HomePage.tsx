@@ -1,11 +1,12 @@
 import Card from "../../UI/molecules/MovieCard/Card";
+import List from "../../UI/molecules/MovieList/List";
 import "./HomePage.css";
 
 const HomePage = () => {
   const movies = [
     {
       id: "cb9c8dc9-c3d0-4517-a3a8-498456e3e4ec",
-      title: "Brave",
+      title: "The Terminator",
       genre: "ACTION",
       year: 1984,
       runtime: 107,
@@ -44,9 +45,7 @@ const HomePage = () => {
 
   return (
     <div className="home__page">
-      {movies.map((movie) => (
-        <Card item={movie} />
-      ))}
+      <List items={movies} />
     </div>
   );
 };
