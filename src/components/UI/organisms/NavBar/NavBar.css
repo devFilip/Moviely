@@ -10,6 +10,7 @@
 }
 .nav__title {
   font-size: 6rem;
+  margin-left: 1rem;
   cursor: pointer;
 }
 .nav__navigation {
