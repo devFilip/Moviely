@@ -17,34 +17,45 @@ interface Card {
 const Card: React.FC<Card> = ({ item }) => {
   return (
     <div className="card">
-      <img className="user__img" src={item.imageUrl} alt="" />
-      <div className="card__desc">
-        <span>{item.title}</span>
-        <p className="card__item">
-          {item.comments.length}
-          <img className="icon__img__xs" src="images/comment.png" alt="" />
-        </p>
-        <p className="card__item">
-          {item.ratings.length}
-          <img className="icon__img__xs" src="images/star.png" alt="" />
-        </p>
+      <div className="card__poster">
+        <img className="card__img" src={item.imageUrl} alt="movie image" />
       </div>
-      <p className="card__item">{item.description}</p>
-      <div className="card__buttons">
-        <div className="card__button__edit">
+      <div className="card__desc">
+        <div className="card__title">
+          <span className="title">{item.title}</span>
+          <div className="card__items">
+            <div className="card__item card--margin">
+              <p className="card__item__number">{item.comments.length}</p>
+              <img className="icon__img__xs" src="images/comment.png" alt="" />
+            </div>
+            <div className="card__item">
+              <p className="card__item__number">{item.ratings.length}</p>
+              <img
+                className="icon__img__xs"
+                style={{ transform: `translateY(${-2}px)` }}
+                src="images/star.png"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+        <p>{item.description}</p>
+        <div className="card__buttons">
+          <div className="card__button__edit">
+            <Button
+              textColor="black"
+              color="rgba(37, 150, 190, 0.5)"
+              text="Edit"
+              size="100%"
+            />
+          </div>
           <Button
             textColor="black"
-            color="rgba(37, 150, 190, 0.5)"
-            text="Edit"
-            size="100px"
+            color="rgba(244, 36, 36, 0.3)"
+            text="Delete"
+            size="40%"
           />
         </div>
-        <Button
-          textColor="black"
-          color="rgba(244, 36, 36, 0.3)"
-          text="Delete"
-          size="100px"
-        />
       </div>
     </div>
   );

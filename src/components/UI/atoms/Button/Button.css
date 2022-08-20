@@ -6,3 +6,8 @@
   height: 2rem;
   justify-content: center;
 }
+@media screen and (max-width: 860px) {
+  .button {
+    font-size: 0.8rem;
+  }
+}

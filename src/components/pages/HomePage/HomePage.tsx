@@ -5,7 +5,7 @@ const HomePage = () => {
   const movies = [
     {
       id: "cb9c8dc9-c3d0-4517-a3a8-498456e3e4ec",
-      title: "The Terminator",
+      title: "Brave",
       genre: "ACTION",
       year: 1984,
       runtime: 107,
