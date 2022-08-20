@@ -1,6 +1,9 @@
-.homePage {
+.home__page {
   background: var(--background-color-primary);
   border-radius: var(--border-radius);
   margin: 5rem auto 5rem; /* trbl   */
   width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,0 +1,13 @@
+.button {
+  align-items: center;
+  border-radius: var(--border-radius);
+  color: #fff;
+  display: flex;
+  height: 2rem;
+  justify-content: center;
+}
+@media screen and (max-width: 860px) {
+  .button {
+    font-size: 0.8rem;
+  }
+}
