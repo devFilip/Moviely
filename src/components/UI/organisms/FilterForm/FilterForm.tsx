@@ -38,7 +38,7 @@ const FilterForm = () => {
         />
       </div>
       <div className="filter-form__bot">
-        <Slider />
+        <Slider value={input.grade} name="grade" onChange={handleChange} />
       </div>
     </div>
   );
