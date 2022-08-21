@@ -1,5 +1,5 @@
-import Card from "../../UI/molecules/MovieCard/Card";
 import List from "../../UI/molecules/MovieList/List";
+import FilterForm from "../../UI/organisms/NavBar/FilterForm/FilterForm";
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -230,6 +230,7 @@ const HomePage = () => {
 
   return (
     <div className="home__page">
+      <FilterForm />
       <List items={movies} />
     </div>
   );
