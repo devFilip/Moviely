@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Input from "../../../atoms/Button/Input/Input";
+import DropDownList from "../../../atoms/DropDownList/DropDownList";
 import "./FilterForm.css";
 
 const FilterForm = () => {
@@ -9,7 +10,11 @@ const FilterForm = () => {
     year: "",
     grade: "",
   });
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+  ) => {
     const inputCopy: any = { ...input };
     inputCopy[e.target.name] = e.target.value;
     setInput(inputCopy);
@@ -21,14 +26,14 @@ const FilterForm = () => {
           placeholder="Title"
           value={input.title}
           name="title"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
+          onChange={handleChange}
         />
-        {/* <Input placeholder="Genre" /> */}
+        <DropDownList name="genre" onChange={handleChange} />
         <Input
           placeholder="Year"
           value={input.year}
           name="year"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
+          onChange={handleChange}
         />
       </div>
       <div className="filter-form__bot">

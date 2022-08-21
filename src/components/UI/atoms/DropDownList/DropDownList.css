@@ -1,0 +1,23 @@
+.drop-list {
+  outline: none;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--blue-color-primary);
+  padding: 1rem;
+  width: 31.8%;
+  height: 6.5rem;
+  margin-right: 1.4rem;
+  display: flex;
+  align-items: center;
+}
+
+.drop-list__select {
+  -webkit-appearance: none;
+  font-family: "Noto Sans";
+  font-size: 2rem;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  opacity: 70%;
+  letter-spacing: 0.1rem;
+  width: 100%;
+}

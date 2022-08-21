@@ -7,8 +7,8 @@ interface Input {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input: React.FC<Input> = ({ ...rest }) => {
-  return <input className="input" {...rest} />;
+const Input: React.FC<Input> = ({ onChange, ...rest }) => {
+  return <input className="input" {...rest} onChange={(e) => onChange(e)} />;
 };
 
 export default Input;

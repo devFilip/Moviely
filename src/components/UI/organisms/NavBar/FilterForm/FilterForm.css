@@ -3,8 +3,15 @@
   border-radius: var(--border-radius);
   width: 100%;
   margin-bottom: 4.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
   padding: 1rem 4rem; /* trbl */
 }
 .filter-form__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 0.7rem;
 }
