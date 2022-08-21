@@ -19,7 +19,12 @@ const Card: React.FC<Card> = ({ item }) => {
           <div className="card__items">
             <div className="card__item card--margin">
               <p className="card__item__number">{item.comments.length}</p>
-              <img className="icon__img__xs" src="images/comment.png" alt="" />
+              <img
+                className="icon__img__xs"
+                style={{ opacity: "50%" }}
+                src="images/comment.png"
+                alt=""
+              />
             </div>
             <div className="card__item">
               <p className="card__item__number">{item.ratings.length}</p>

@@ -7,6 +7,7 @@
   font-size: 3rem;
   justify-content: space-between;
   position: relative;
+  height: 74px;
 }
 .nav__title {
   font-size: 6rem;

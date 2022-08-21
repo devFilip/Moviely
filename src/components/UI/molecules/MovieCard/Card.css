@@ -2,10 +2,11 @@
   background: var(--background-color-secondary);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow-primary);
-  width: 33%;
-  overflow: hidden;
+  width: 100%;
 }
 .card__poster {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
   position: relative;
 }
 .card__poster::after {
@@ -25,6 +26,8 @@
 }
 .card__img {
   width: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 .card__desc {
   padding: 1.3rem 2.1rem 0.8rem;
