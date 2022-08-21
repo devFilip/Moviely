@@ -1,5 +1,5 @@
 import List from "../../UI/molecules/MovieList/List";
-import FilterForm from "../../UI/organisms/NavBar/FilterForm/FilterForm";
+import FilterForm from "../../UI/organisms/FilterForm/FilterForm";
 import "./HomePage.css";
 
 const HomePage = () => {

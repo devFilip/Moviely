@@ -5,7 +5,7 @@
   padding: 1rem;
   width: 31.8%;
   height: 6.5rem;
-  margin-right: 1.4rem;
+  /* margin-right: 1.4rem; */
   display: flex;
   align-items: center;
 }
@@ -17,7 +17,7 @@
   text-decoration: none;
   outline: none;
   border: none;
-  opacity: 70%;
-  letter-spacing: 0.1rem;
+  opacity: 60%;
+  letter-spacing: 0.5px;
   width: 100%;
 }

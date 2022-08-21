@@ -1,6 +1,7 @@
 import { useState } from "react";
-import Input from "../../../atoms/Button/Input/Input";
-import DropDownList from "../../../atoms/DropDownList/DropDownList";
+import DropDownList from "../../atoms/DropDownList/DropDownList";
+import Input from "../../atoms/Input/Input";
+import Slider from "../../atoms/Slider/Slider";
 import "./FilterForm.css";
 
 const FilterForm = () => {
@@ -37,9 +38,7 @@ const FilterForm = () => {
         />
       </div>
       <div className="filter-form__bot">
-        {/* <Input placeholder="Title" />
-        <Input placeholder="Genre" />
-        <Input placeholder="Year" /> */}
+        <Slider />
       </div>
     </div>
   );
