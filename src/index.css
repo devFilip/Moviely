@@ -24,6 +24,7 @@ body {
   font-family: "Noto Sans";
   line-height: 1.4;
   margin: 0;
+  height: 100vh;
 }
 
 /*  use span for every occurance of 20px */
