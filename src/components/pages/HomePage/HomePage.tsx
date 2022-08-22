@@ -230,7 +230,7 @@ const HomePage = () => {
 
   return (
     <div className="home__page">
-      <FilterForm />
+      <FilterForm role={"user"} />
       <List items={movies} />
     </div>
   );

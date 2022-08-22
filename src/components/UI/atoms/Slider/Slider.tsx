@@ -17,11 +17,13 @@ const Slider: React.FC<Slider> = ({ value, onChange, ...rest }) => {
         {...rest}
         onChange={(e) => onChange(e)}
       />
-      <div className="slider__desc">
-        <p>0</p>
-        {value ? value : <p>Minimum grade</p>}
-        <p>5</p>
-      </div>
+      {value ? (
+        <p className="slider__value">{value}</p>
+      ) : (
+        <div className="slider__desc">
+          <p>0</p> <p>Minimum grade</p> <p>5</p>
+        </div>
+      )}
     </div>
   );
 };

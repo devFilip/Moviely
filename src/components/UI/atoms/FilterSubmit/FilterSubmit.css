@@ -1,0 +1,25 @@
+.filter-submit {
+  align-items: center;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--blue-color-primary);
+  color: rgba(0, 0, 0, 0.53);
+  cursor: pointer;
+  display: flex;
+  font-size: 2rem;
+  height: 6.5rem;
+  justify-content: center;
+  letter-spacing: 0.1rem;
+  outline: none;
+  padding: 1rem;
+  transition: 0.2s all;
+  width: 31.8%;
+}
+.filter-submit:active {
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+  transform: scale(0.95);
+}
+.filter-submit__img {
+  height: 4rem;
+  opacity: 55%;
+  width: 4rem;
+}

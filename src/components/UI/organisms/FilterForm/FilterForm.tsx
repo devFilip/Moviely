@@ -1,15 +1,22 @@
 import { useState } from "react";
-import DropDownList from "../../atoms/DropDownList/DropDownList";
 import Input from "../../atoms/Input/Input";
 import Slider from "../../atoms/Slider/Slider";
+import DropDownList from "../../atoms/DropDownList/DropDownList";
+import RadioButton from "../../atoms/RadioButton/RadioButton";
+import FilterSubmit from "../../atoms/FilterSubmit/FilterSubmit";
 import "./FilterForm.css";
 
-const FilterForm = () => {
+interface FilterForm {
+  role: string;
+}
+
+const FilterForm: React.FC<FilterForm> = ({ role }) => {
   const [input, setInput] = useState({
     title: "",
     genre: "",
     year: "",
     grade: "",
+    watchedMovie: "",
   });
   const handleChange = (
     e:
@@ -21,7 +28,7 @@ const FilterForm = () => {
     setInput(inputCopy);
   };
   return (
-    <div className="filter-form">
+    <form className="filter-form">
       <div className="filter-form__top">
         <Input
           placeholder="Title"
@@ -37,10 +44,12 @@ const FilterForm = () => {
           onChange={handleChange}
         />
       </div>
-      <div className="filter-form__bot">
+      <div className="filter-form__bottom">
         <Slider value={input.grade} name="grade" onChange={handleChange} />
+        <RadioButton name="watchedMovie" onChange={handleChange} role={role} />
+        <FilterSubmit />
       </div>
-    </div>
+    </form>
   );
 };
 
