@@ -1,135 +1,32 @@
+import { useEffect, useState } from "react";
 import { InputModel } from "../../../models/InputModel";
+import { useDispatch, useSelector } from "react-redux";
+import { getMovies } from "../../../redux/redux/toolkit/moviesSlice";
 import List from "../../UI/molecules/MovieList/List";
 import FilterForm from "../../UI/organisms/FilterForm/FilterForm";
 import "./HomePage.css";
+import { RootState } from "../../../redux/redux/toolkit/configureStore";
 
 interface HomePage {
   role: string;
 }
 
 const HomePage: React.FC<HomePage> = ({ role }) => {
-  const movies = [
-    {
-      id: "cb9c8dc9-c3d0-4517-a3a8-498456e3e4el",
-      title: "The Terminator",
-      genre: "ACTION",
-      year: 1984,
-      runtime: 107,
-      imageUrl:
-        "https://goombastomp.com/wp-content/uploads/2019/11/The-Terminator-Film-Review.jpeg",
-      country: "United States",
-      description:
-        "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation.",
-      comments: [
-        {
-          id: "b2f910ee-f162-4169-b050-19db76d0d594",
-          email: "m.gillings@maildrop.cc",
-          movieId: "cb9c8dc9-c3d0-4517-a3a8-498456e3e4ec",
-          content: "This movie is great! :)",
-          approved: true,
-        },
-        {
-          id: "b6538887-2310-4c97-9422-5fe37e0e5e5a",
-          email: "joana.cripps@maildrop.cc",
-          movieId: "cb9c8dc9-c3d0-4517-a3a8-498456e3e4ec",
-          content: "Too much action! :(",
-          approved: false,
-        },
-      ],
-      ratings: [
-        {
-          id: "e4da3888-6903-4fda-811f-0007fb3a4f00",
-          email: "joana.cripps@maildrop.cc",
-          movieId: "cb9c8dc9-c3d0-4517-a3a8-498456e3e4ec",
-          grade: 3,
-        },
-      ],
-      movieTrailer: "https://www.youtube.com/watch?v=k64P4l2Wmeg",
-    },
-    {
-      id: "cb9c8dc9-c3d0-4517-a3a8-498456e3e4ec",
-      title: "Brave",
-      genre: "Comedy",
-      year: 2001,
-      runtime: 107,
-      imageUrl:
-        "https://goombastomp.com/wp-content/uploads/2019/11/The-Terminator-Film-Review.jpeg",
-      country: "United States",
-      description:
-        "A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation.",
-      comments: [
-        {
-          id: "b2f910ee-f162-4169-b050-19db76d0d594",
-          email: "m.gillings@maildrop.cc",
-          movieId: "cb9c8dc9-c3d0-4517-a3a8-498456e3e4ec",
-          content: "This movie is great! :)",
-          approved: true,
-        },
-        {
-          id: "b6538887-2310-4c97-9422-5fe37e0e5e5a",
-          email: "joana.cripps@maildrop.cc",
-          movieId: "cb9c8dc9-c3d0-4517-a3a8-498456e3e4ec",
-          content: "Too much action! :(",
-          approved: false,
-        },
-      ],
-      ratings: [
-        {
-          id: "e4da3888-6903-4fda-811f-0007fb3a4f00",
-          email: "joana.cripps@maildrop.cc",
-          movieId: "cb9c8dc9-c3d0-4517-a3a8-498456e3e4ec",
-          grade: 3,
-        },
-      ],
-      movieTrailer: "https://www.youtube.com/watch?v=k64P4l2Wmeg",
-    },
-    {
-      id: "cb9c8dc9-c3d0-4517-a3a8-498456e3e4k0",
-      title: "Rain",
-      genre: "Horror",
-      year: 2015,
-      runtime: 107,
-      imageUrl:
-        "https://goombastomp.com/wp-content/uploads/2019/11/The-Terminator-Film-Review.jpeg",
-      country: "United States",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, esse?A human soldier is sent from 2029 to 1984 to stop an almost indestructible cyborg killing machine, sent from the same year, which has been programmed to execute a young woman whose unborn son is the key to humanity's future salvation.",
+  const dispatch = useDispatch();
 
-      comments: [
-        {
-          id: "b2f910ee-f162-4169-b050-19db76d0d594",
-          email: "m.gillings@maildrop.cc",
-          movieId: "cb9c8dc9-c3d0-4517-a3a8-498456e3e4ec",
-          content: "This movie is great! :)",
-          approved: true,
-        },
-        {
-          id: "b6538887-2310-4c97-9422-5fe37e0e5e5a",
-          email: "joana.cripps@maildrop.cc",
-          movieId: "cb9c8dc9-c3d0-4517-a3a8-498456e3e4ec",
-          content: "Too much action! :(",
-          approved: false,
-        },
-      ],
-      ratings: [
-        {
-          id: "e4da3888-6903-4fda-811f-0007fb3a4f00",
-          email: "joana.cripps@maildrop.cc",
-          movieId: "cb9c8dc9-c3d0-4517-a3a8-498456e3e4ec",
-          grade: 3,
-        },
-      ],
-      movieTrailer: "https://www.youtube.com/watch?v=k64P4l2Wmeg",
-    },
-  ];
+  const movies = useSelector((state: RootState) => state.movies);
+  useEffect(() => {
+    dispatch(getMovies());
+  }, []);
   const handleFilter = (obj: InputModel) => {
     const filterObj: InputModel = { ...obj };
-    if (filterObj.title !== "")
-      console.log(
-        movies.filter((movie) =>
-          movie.title.toLowerCase().includes(filterObj.title.toLowerCase())
-        )
-      );
+    // if (filterObj.title !== "")
+    //   console.log(
+    //     movies.filter((movie) =>
+    //       movie.title.toLowerCase().includes(filterObj.title.toLowerCase())
+    //     )
+    //   );
+    console.log(obj);
   };
 
   return (
