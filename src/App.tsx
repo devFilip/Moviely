@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <NavBar role="admin" />
-      <HomePage />
+      <HomePage role="admin" />
     </div>
   );
 }

@@ -2,6 +2,9 @@
   background: var(--background-color-secondary);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow-primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   width: 100%;
 }
 .card__poster {
@@ -12,7 +15,7 @@
 .card__poster::after {
   content: "";
   position: absolute;
-  top: 45%;
+  top: 50%;
   bottom: 0;
   right: 0;
   left: 0;
@@ -25,11 +28,16 @@
   );
 }
 .card__img {
-  width: 100%;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+  height: 100%;
+  width: 100%;
 }
 .card__desc {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
   padding: 1.3rem 2.1rem 0.8rem;
 }
 .card__title {
@@ -52,7 +60,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 2.4rem;
 }
 .card__button__edit {
   margin-right: 1.4rem;
