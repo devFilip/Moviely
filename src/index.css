@@ -22,9 +22,9 @@ body {
   background-image: url("/public/images/6431.jpg");
   background-repeat: no-repeat;
   font-family: "Noto Sans";
+  height: calc(100vh - 74px);
   line-height: 1.4;
   margin: 0;
-  height: 100vh;
 }
 
 /*  use span for every occurance of 20px */

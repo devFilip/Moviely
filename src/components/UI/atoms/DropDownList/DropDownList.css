@@ -1,0 +1,27 @@
+.drop-list {
+  align-items: center;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--blue-color-primary);
+  display: flex;
+  height: 6.5rem;
+  outline: none;
+  padding: 1rem;
+  width: 31.8%;
+}
+
+.drop-list__select {
+  -webkit-appearance: none;
+  border: none;
+  font-family: "Noto Sans";
+  font-size: 2rem;
+  letter-spacing: 0.5px;
+  opacity: 60%;
+  outline: none;
+  text-decoration: none;
+  width: 100%;
+}
+@media screen and (max-width: 1250px) {
+  .drop-list__select {
+    font-size: 1.5rem;
+  }
+}

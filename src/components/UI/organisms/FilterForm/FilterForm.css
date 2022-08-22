@@ -1,0 +1,20 @@
+.filter-form {
+  background: var(--background-color-secondary);
+  border-radius: var(--border-radius);
+  margin-bottom: 4.9rem;
+  width: 100%;
+  padding: 1rem 4rem; /* trbl */
+}
+.filter-form__top {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-bottom: 0.7rem;
+}
+.filter-form__bottom {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}

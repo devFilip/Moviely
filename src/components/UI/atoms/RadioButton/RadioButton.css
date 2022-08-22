@@ -1,0 +1,15 @@
+.radio {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  width: 31.8%;
+}
+.radio__label {
+  font-size: 2rem;
+}
+@media screen and (max-width: 1250px) {
+  .radio__label {
+    font-size: 1.5rem;
+  }
+}
