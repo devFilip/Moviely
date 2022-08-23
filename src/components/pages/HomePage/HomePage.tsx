@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { InputModel } from "../../../models/InputModel";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovies } from "../../../redux/redux/toolkit/moviesSlice";
+import {
+  getFilteredMovies,
+  getMovies,
+} from "../../../redux/redux/toolkit/moviesSlice";
 import List from "../../UI/molecules/MovieList/List";
 import FilterForm from "../../UI/organisms/FilterForm/FilterForm";
 import "./HomePage.css";
@@ -20,12 +23,8 @@ const HomePage: React.FC<HomePage> = ({ role }) => {
   }, []);
   const handleFilter = (obj: InputModel) => {
     const filterObj: InputModel = { ...obj };
-    // if (filterObj.title !== "")
-    //   console.log(
-    //     movies.filter((movie) =>
-    //       movie.title.toLowerCase().includes(filterObj.title.toLowerCase())
-    //     )
-    //   );
+    dispatch(getFilteredMovies(obj));
+
     console.log(obj);
   };
 

@@ -20,4 +20,8 @@ const store = configureStore({
 sagaMiddleware.run(watcherSaga);
 
 export type RootState = ReturnType<typeof store.getState>;
+export interface Action {
+  type: string;
+  payload: any;
+}
 export default store;
