@@ -7,9 +7,11 @@ const movieSlice = createSlice({
   reducers: {
     getMovies: () => {},
     setMovies: (state: Movie[], action): any => {
-      const movies = action.payload;
-      return [...movies];
+      state = action.payload;
+      return [...state];
     },
+    getFilteredMovies: () => {},
+    setFilteredMovies: () => {},
   },
 });
 
