@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Movie } from "../../../../models/MovieModel";
 import { calcAverageRating } from "../../../../utils/averageRating";
 import Button from "../../atoms/Button/Button";
@@ -11,9 +12,9 @@ interface Card {
 const Card: React.FC<Card> = ({ item }) => {
   return (
     <div className="card">
-      <div className="card__poster">
+      <Link to={`/movie/${item.id}`} className="card__poster">
         <img className="card__img" src={item.imageUrl} alt="movie image" />
-      </div>
+      </Link>
       <div className="card__title">
         <span className="title">{item.title}</span>
         <div className="card__items">

@@ -5,12 +5,11 @@ import {
   getFilteredMovies,
   getMovies,
 } from "../../../redux/redux/toolkit/moviesSlice";
-import List from "../../UI/molecules/MovieList/List";
-import FilterForm from "../../UI/organisms/FilterForm/FilterForm";
-import "./HomePage.css";
 import { RootState } from "../../../redux/redux/toolkit/configureStore";
-import _, { filter } from "lodash";
-import { Movie } from "../../../models/MovieModel";
+
+import FilterForm from "../../UI/organisms/FilterForm/FilterForm";
+import List from "../../UI/molecules/MovieList/List";
+import "./HomePage.css";
 
 interface HomePage {
   role: string;
@@ -18,20 +17,16 @@ interface HomePage {
 
 const HomePage: React.FC<HomePage> = ({ role }) => {
   const dispatch = useDispatch();
-
-  const movies = useSelector((state: RootState) => state.movies);
+  const movies = useSelector((state: RootState) => state.movies.movies);
   useEffect(() => {
     dispatch(getMovies());
   }, []);
   const handleFilter = (obj: InputModel) => {
-    let sum: number;
-    const filterObj: InputModel = { ...obj, grade: Number(obj.grade) };
-
+    const filterObj: InputModel = {
+      ...obj,
+      grade: Number(obj.grade),
+    };
     dispatch(getFilteredMovies(filterObj));
-
-    console.log(movies);
-
-    console.log(filterObj);
   };
 
   return (

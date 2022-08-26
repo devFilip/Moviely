@@ -5,22 +5,33 @@ import { Action, RootState } from "./configureStore";
 
 const movieSlice = createSlice({
   name: "movies",
-  initialState: [],
+  initialState: {
+    movies: [],
+    movie: {},
+  },
   reducers: {
     getMovies: () => {},
-    setMovies: (movies: Movie[], action): any => {
-      movies = action.payload;
-      return [...movies];
+    setMovies: (state, action): any => {
+      return { ...state, movies: action.payload };
     },
     getFilteredMovies: (state, action: Action) => {},
-    setFilteredMovies: (movies: Movie[], action): any => {
-      movies = action.payload;
-      return [...movies];
+    setFilteredMovies: (state, action: Action): any => {
+      return { ...state, movies: action.payload };
+    },
+    getMovie: (state, action: Action) => {},
+    setMovie: (state, action: Action): any => {
+      return { ...state, movie: action.payload };
     },
   },
 });
 
-export const { getMovies, setMovies, getFilteredMovies, setFilteredMovies } =
-  movieSlice.actions;
+export const {
+  getMovies,
+  setMovies,
+  getFilteredMovies,
+  setFilteredMovies,
+  getMovie,
+  setMovie,
+} = movieSlice.actions;
 
 export default movieSlice.reducer;
