@@ -1,5 +1,6 @@
 import React from "react";
 import { Movie } from "../../../../models/MovieModel";
+import { calcAverageRating } from "../../../../utils/averageRating";
 import Button from "../../atoms/Button/Button";
 
 import "./Card.css";
@@ -26,7 +27,9 @@ const Card: React.FC<Card> = ({ item }) => {
             />
           </div>
           <div className="card__item">
-            <p className="card__item__number">{item.ratings.length}</p>
+            <p className="card__item__number">
+              {calcAverageRating(item.ratings)}
+            </p>
             <img
               className="icon__img__xs"
               style={{ transform: `translateY(${-2}px)` }}

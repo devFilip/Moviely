@@ -31,7 +31,7 @@ const FilterForm: React.FC<FilterForm> = ({ role, onFilter }) => {
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const inputCopy: any = { ...input, year: +input.year, grade: +input.grade };
+    const inputCopy: any = { ...input };
     onFilter(inputCopy);
   };
   return (

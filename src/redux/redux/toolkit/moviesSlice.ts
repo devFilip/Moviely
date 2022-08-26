@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { InputModel } from "../../../models/InputModel";
 import { Movie } from "../../../models/MovieModel";
-import { RootState } from "./configureStore";
+import { Action, RootState } from "./configureStore";
 
 const movieSlice = createSlice({
   name: "movies",
@@ -12,7 +12,7 @@ const movieSlice = createSlice({
       movies = action.payload;
       return [...movies];
     },
-    getFilteredMovies: () => {},
+    getFilteredMovies: (state, action: Action) => {},
     setFilteredMovies: (movies: Movie[], action): any => {
       movies = action.payload;
       return [...movies];

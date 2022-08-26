@@ -9,6 +9,8 @@ import List from "../../UI/molecules/MovieList/List";
 import FilterForm from "../../UI/organisms/FilterForm/FilterForm";
 import "./HomePage.css";
 import { RootState } from "../../../redux/redux/toolkit/configureStore";
+import _, { filter } from "lodash";
+import { Movie } from "../../../models/MovieModel";
 
 interface HomePage {
   role: string;
@@ -22,10 +24,14 @@ const HomePage: React.FC<HomePage> = ({ role }) => {
     dispatch(getMovies());
   }, []);
   const handleFilter = (obj: InputModel) => {
-    const filterObj: InputModel = { ...obj };
-    dispatch(getFilteredMovies(obj));
+    let sum: number;
+    const filterObj: InputModel = { ...obj, grade: Number(obj.grade) };
 
-    console.log(obj);
+    dispatch(getFilteredMovies(filterObj));
+
+    console.log(movies);
+
+    console.log(filterObj);
   };
 
   return (

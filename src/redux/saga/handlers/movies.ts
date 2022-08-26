@@ -19,7 +19,7 @@ export function* handleGetFilteredMovies(action: Action) {
       requestGetFilteredMovies,
       payload
     );
-    yield put(setFilteredMovies([...response?.data]));
+    yield put(setFilteredMovies(response));
   } catch (error) {
     console.log(error);
   }

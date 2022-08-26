@@ -1,7 +1,7 @@
 export interface InputModel {
   title: string;
   genre: string;
-  year: string;
-  grade: string;
+  year: string | number;
+  grade: string | number;
   watchedMovie: string;
 }

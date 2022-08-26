@@ -13,6 +13,7 @@ const DropDownList: React.FC<DropDownList> = ({ name, onChange }) => {
         name={name}
         onChange={(e) => onChange(e)}
       >
+        <option value="">Genre</option>
         <option value="ACTION">Action</option>
         <option value="COMEDY">Comedy</option>
         <option value="ROMANCE">Romance</option>
