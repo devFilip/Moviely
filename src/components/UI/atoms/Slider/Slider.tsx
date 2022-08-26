@@ -17,7 +17,7 @@ const Slider: React.FC<Slider> = ({ value, onChange, ...rest }) => {
         {...rest}
         onChange={(e) => onChange(e)}
       />
-      {value ? (
+      {+value !== 0 ? (
         <p className="slider__value">{value}</p>
       ) : (
         <div className="slider__desc">

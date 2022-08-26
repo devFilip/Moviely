@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { InputModel } from "../../../../models/InputModel";
 import Input from "../../atoms/Input/Input";
 import Slider from "../../atoms/Slider/Slider";
 import DropDownList from "../../atoms/DropDownList/DropDownList";
@@ -8,9 +9,10 @@ import "./FilterForm.css";
 
 interface FilterForm {
   role: string;
+  onFilter: (obj: InputModel) => void;
 }
 
-const FilterForm: React.FC<FilterForm> = ({ role }) => {
+const FilterForm: React.FC<FilterForm> = ({ role, onFilter }) => {
   const [input, setInput] = useState({
     title: "",
     genre: "",
@@ -27,8 +29,13 @@ const FilterForm: React.FC<FilterForm> = ({ role }) => {
     inputCopy[e.target.name] = e.target.value;
     setInput(inputCopy);
   };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const inputCopy: any = { ...input };
+    onFilter(inputCopy);
+  };
   return (
-    <form className="filter-form">
+    <form className="filter-form" onSubmit={(e) => handleSubmit(e)}>
       <div className="filter-form__top">
         <Input
           placeholder="Title"

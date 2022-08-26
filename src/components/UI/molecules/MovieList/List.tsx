@@ -7,6 +7,8 @@ interface List {
 }
 
 const List: React.FC<List> = ({ items }) => {
+  if (items.length === 0)
+    return <span>There are no movies of that kind in database.</span>;
   return (
     <div className="list">
       {items.map((item) => (
