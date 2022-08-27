@@ -1,15 +1,24 @@
-import React from "react";
+import "./Icon.css";
 
 interface Icon {
-  icon: string;
-  label: string;
+  iconSrc: string;
+  label?: string | number;
+  iconStyle?: React.CSSProperties;
+  labelStyle?: React.CSSProperties;
 }
 
-const Icon: React.FC<Icon> = ({ icon, label }) => {
+const Icon: React.FC<Icon> = ({ iconSrc, label, iconStyle, labelStyle }) => {
   return (
     <div className="icon">
-      <img src={icon} alt="icon" />
-      <label>{label}</label>
+      <img
+        className="icon__img icon--margin__right"
+        style={iconStyle}
+        src={iconSrc}
+        alt="icon"
+      />
+      <label className="icon__label" style={labelStyle}>
+        {label}
+      </label>
     </div>
   );
 };

@@ -1,0 +1,7 @@
+.icon {
+  display: flex;
+  align-items: center;
+}
+.icon--margin__right {
+  margin-right: 1.5rem;
+}
