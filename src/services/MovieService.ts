@@ -2,7 +2,7 @@ import _ from "lodash";
 import api from "../api/axios";
 import { InputModel } from "../models/InputModel";
 import { Movie } from "../models/MovieModel";
-import { calcAverageRating } from "../utils/averageRating";
+import { displayRating } from "../utils/averageRating";
 
 class MovieService {
   client;
@@ -20,7 +20,7 @@ class MovieService {
     if (filterObj.grade !== 0) {
       const { data } = await this.client?.get(url);
       const newMovies = data.filter((movie: Movie) => {
-        return filterObj.grade === Math.round(calcAverageRating(movie.ratings));
+        return filterObj.grade === Math.round(displayRating(movie));
       });
       console.log("Movie service", newMovies);
 

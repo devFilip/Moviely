@@ -1,4 +1,4 @@
-export interface Rating {
+export interface RatingModel {
   id: string;
   email: string;
   movieId: string;

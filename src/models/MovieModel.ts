@@ -1,5 +1,5 @@
 import { Comment } from "./CommentModel";
-import { Rating } from "./RatingsModel";
+import { RatingModel } from "./RatingsModel";
 
 export interface Movie {
   id: string;
@@ -11,6 +11,6 @@ export interface Movie {
   country: string;
   description: string;
   comments: Array<Comment>;
-  ratings: Array<Rating>;
+  ratings: Array<RatingModel>;
   movieTrailer: string;
 }

@@ -30,7 +30,7 @@ const HomePage: React.FC<HomePage> = ({ role }) => {
   };
 
   return (
-    <div className="home__page">
+    <div className="view">
       <FilterForm role={role} onFilter={handleFilter} />
       <List items={movies} />
     </div>

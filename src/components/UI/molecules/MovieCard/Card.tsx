@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Movie } from "../../../../models/MovieModel";
-import { calcAverageRating } from "../../../../utils/averageRating";
+import { displayRating } from "../../../../utils/averageRating";
 import Button from "../../atoms/Button/Button";
 
 import "./Card.css";
@@ -12,7 +12,11 @@ interface Card {
 const Card: React.FC<Card> = ({ item }) => {
   return (
     <div className="card">
-      <Link to={`/movie/${item.id}`} className="card__poster">
+      <Link
+        to={`/movie/${item.id}`}
+        // onClick={() => window.location.assign(`/movie/${item.id}`)}
+        className="card__poster"
+      >
         <img className="card__img" src={item.imageUrl} alt="movie image" />
       </Link>
       <div className="card__title">
@@ -28,9 +32,7 @@ const Card: React.FC<Card> = ({ item }) => {
             />
           </div>
           <div className="card__item">
-            <p className="card__item__number">
-              {calcAverageRating(item.ratings)}
-            </p>
+            <p className="card__item__number">{displayRating(item)}</p>
             <img
               className="icon__img__xs"
               style={{ transform: `translateY(${-2}px)` }}
@@ -40,7 +42,6 @@ const Card: React.FC<Card> = ({ item }) => {
           </div>
         </div>
       </div>
-
       <p className="card__item__description">{item.description}</p>
       <div className="card__buttons">
         <div className="card__button__edit">

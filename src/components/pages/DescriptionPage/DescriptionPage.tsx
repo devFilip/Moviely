@@ -4,9 +4,10 @@ import { useParams } from "react-router-dom";
 import { Movie } from "../../../models/MovieModel";
 import { RootState } from "../../../redux/redux/toolkit/configureStore";
 import { getMovie } from "../../../redux/redux/toolkit/moviesSlice";
-import { calcAverageRating } from "../../../utils/averageRating";
+import { displayRating } from "../../../utils/averageRating";
 import Icon from "../../UI/atoms/Icon/Icon";
 import "./DescriptionPage.css";
+import ModifyMovie from "../../UI/molecules/MovieModify/ModifyMovie";
 
 const DescriptionPage = () => {
   const dispatch = useDispatch();
@@ -14,13 +15,13 @@ const DescriptionPage = () => {
   useEffect(() => {
     dispatch(getMovie(id));
   }, []);
+  const role = "admin";
   const movie = useSelector((state: RootState) => state.movies.movie);
-  //   const [movie] = getMovie(movies, id as string);
 
   const jsx = (movie: Movie) => {
     return (
-      <div className="desc-page">
-        <div className="desc-page__wrapper">
+      <div className="desc-page view">
+        <div className="desc-page__wrapper view-wrap">
           <div className="desc-page__wrapper-top">
             <img
               className="wrapper-top__left"
@@ -30,16 +31,7 @@ const DescriptionPage = () => {
             <div className="wrapper-top__right">
               <div className="wrapper-top__right__head">
                 <span className="head__title">{movie.title}</span>
-                <div className="head__icons">
-                  <Icon
-                    iconSrc="/images/edit.png"
-                    iconStyle={{ cursor: "pointer", marginRight: "1.5rem" }}
-                  />
-                  <Icon
-                    iconSrc="/images/trash.png"
-                    iconStyle={{ cursor: "pointer" }}
-                  />
-                </div>
+                <ModifyMovie role={role} rate={displayRating(movie)} />
               </div>
               <div className="wrapper-top__right__body">
                 <div className="wrapper-top__right__body__icons">
@@ -69,13 +61,15 @@ const DescriptionPage = () => {
                   />
                   <Icon
                     iconSrc="/images/starIcon.png"
+                    label={displayRating(movie)}
                     iconStyle={styles.iconStlye}
                     labelStyle={styles.labelStyle}
-                    label={displayRating(movie)}
                   />
                 </div>
                 <div className="wrapper-top__right__body__desc">
-                  <p>{movie.description}</p>
+                  <p className="wrapper-top__right__body__desc__p">
+                    {movie.description}
+                  </p>
                 </div>
               </div>
             </div>
@@ -97,11 +91,6 @@ const styles = {
     fontSize: "1.5rem",
     marginBottom: "2rem",
   },
-};
-const displayRating = (movie: Movie) => {
-  return Object.keys(movie).length !== 0
-    ? calcAverageRating(movie?.ratings)
-    : 5;
 };
 
 export default DescriptionPage;

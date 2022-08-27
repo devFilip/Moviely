@@ -37,5 +37,7 @@ export function* handleGetMovie(action: Action) {
   try {
     const response: AxiosResponse = yield call(requestGetMovie, payload);
     yield put(setMovie(response?.data));
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 }

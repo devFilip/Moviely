@@ -1,5 +1,12 @@
 import _ from "lodash";
-import { Rating } from "../models/RatingsModel";
+import { Movie } from "../models/MovieModel";
+import { RatingModel } from "../models/RatingsModel";
 
-export const calcAverageRating = (ratings: Array<Rating>) =>
+const calcAverageRating = (ratings: Array<RatingModel>) =>
   +(_.sumBy(ratings, (rating) => rating.grade) / ratings.length).toFixed(2);
+
+export const displayRating = (movie: Movie) => {
+  return Object.keys(movie).length !== 0
+    ? calcAverageRating(movie?.ratings)
+    : 5;
+};
