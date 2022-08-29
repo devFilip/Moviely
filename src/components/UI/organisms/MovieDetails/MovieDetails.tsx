@@ -1,6 +1,7 @@
 import React from "react";
 import { Movie } from "../../../../models/MovieModel";
 import { displayRating } from "../../../../utils/averageRating";
+import Details from "../../molecules/MovieDetailsCon/DetailsContainer";
 import ModifyMovie from "../../molecules/MovieModify/ModifyMovie";
 import "./MovieDetails.css";
 
@@ -19,20 +20,10 @@ const MovieDetails: React.FC<MovieDetails> = ({ movie, role }) => {
       />
       <div className="movie-details__right">
         <ModifyMovie role={role} movie={movie} />
+        <Details movie={movie} />
       </div>
     </div>
   );
-};
-const styles = {
-  iconStlye: {
-    marginBottom: "2rem",
-    width: "2.5rem",
-    height: "2.5rem",
-  },
-  labelStyle: {
-    fontSize: "1.5rem",
-    marginBottom: "2rem",
-  },
 };
 
 export default MovieDetails;

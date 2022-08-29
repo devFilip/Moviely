@@ -9,17 +9,6 @@ interface Details {
 }
 
 const Details: React.FC<Details> = ({ movie }) => {
-  const styles = {
-    iconStyle: {
-      marginBottom: "2rem",
-      width: "2.5rem",
-      height: "2.5rem",
-    },
-    labelStyle: {
-      fontSize: "1.5rem",
-      marginBottom: "2rem",
-    },
-  };
   const icons = [
     { path: "runtime", img: "/images/Vector.png" },
     { path: "country", img: "/images/flag.png" },
@@ -56,5 +45,15 @@ interface Styles {
   iconStyle: CSSProperties;
   labelStyle: CSSProperties;
 }
-
+const styles = {
+  iconStyle: {
+    marginBottom: "2rem",
+    width: "2.5rem",
+    height: "2.5rem",
+  },
+  labelStyle: {
+    fontSize: "1.5rem",
+    marginBottom: "2rem",
+  },
+};
 export default Details;

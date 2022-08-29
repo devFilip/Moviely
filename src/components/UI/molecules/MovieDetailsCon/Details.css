@@ -14,3 +14,8 @@
   height: 100%;
   width: 45%;
 }
+@media screen and (max-width: 786px) {
+  .details-icons {
+    margin: 4rem 0;
+  }
+}

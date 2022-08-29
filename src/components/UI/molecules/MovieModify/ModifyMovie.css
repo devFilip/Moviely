@@ -10,3 +10,8 @@
   margin: 1rem;
   font-size: 3rem;
 }
+@media screen and (max-width: 1660px) {
+  .modify-movie__title {
+    font-size: 2rem;
+  }
+}
