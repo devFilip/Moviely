@@ -1,8 +1,9 @@
+import { Movie } from "../../../../models/MovieModel";
 import "./Icon.css";
 
 interface Icon {
   iconSrc: string;
-  label?: string | number;
+  label?: string | number | keyof Movie;
   iconStyle?: React.CSSProperties;
   labelStyle?: React.CSSProperties;
 }

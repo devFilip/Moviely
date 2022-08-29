@@ -12,11 +12,7 @@ interface Card {
 const Card: React.FC<Card> = ({ item }) => {
   return (
     <div className="card">
-      <Link
-        to={`/movie/${item.id}`}
-        // onClick={() => window.location.assign(`/movie/${item.id}`)}
-        className="card__poster"
-      >
+      <Link to={`/movie/${item.id}`} className="card__poster">
         <img className="card__img" src={item.imageUrl} alt="movie image" />
       </Link>
       <div className="card__title">

@@ -66,3 +66,8 @@
     display: none;
   }
 }
+@media screen and (max-width: 786px) {
+  .wrapper-top__right__body__icons {
+    margin: 4rem 0;
+  }
+}

@@ -14,3 +14,10 @@ export interface Movie {
   ratings: Array<RatingModel>;
   movieTrailer: string;
 }
+
+export interface MovieLabel {
+  title: string;
+  genre: string;
+  year: number;
+  runtime: number;
+}

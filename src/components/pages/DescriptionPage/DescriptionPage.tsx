@@ -6,8 +6,9 @@ import { RootState } from "../../../redux/redux/toolkit/configureStore";
 import { getMovie } from "../../../redux/redux/toolkit/moviesSlice";
 import { displayRating } from "../../../utils/averageRating";
 import Icon from "../../UI/atoms/Icon/Icon";
-import "./DescriptionPage.css";
 import ModifyMovie from "../../UI/molecules/MovieModify/ModifyMovie";
+import "./DescriptionPage.css";
+import Details from "../../UI/molecules/MovieDetailsCon/DetailsContainer";
 
 const DescriptionPage = () => {
   const dispatch = useDispatch();
@@ -29,49 +30,8 @@ const DescriptionPage = () => {
               alt="movie image"
             />
             <div className="wrapper-top__right">
-              <div className="wrapper-top__right__head">
-                <span className="head__title">{movie.title}</span>
-                <ModifyMovie role={role} rate={displayRating(movie)} />
-              </div>
-              <div className="wrapper-top__right__body">
-                <div className="wrapper-top__right__body__icons">
-                  <Icon
-                    iconSrc="/images/Vector.png"
-                    label={movie?.runtime}
-                    iconStyle={styles.iconStlye}
-                    labelStyle={styles.labelStyle}
-                  />
-                  <Icon
-                    iconSrc="/images/flag.png"
-                    label={movie?.country}
-                    iconStyle={styles.iconStlye}
-                    labelStyle={styles.labelStyle}
-                  />
-                  <Icon
-                    iconSrc="/images/mask.png"
-                    label={movie?.genre}
-                    iconStyle={styles.iconStlye}
-                    labelStyle={styles.labelStyle}
-                  />
-                  <Icon
-                    iconSrc="/images/calendar.png"
-                    label={movie?.year}
-                    iconStyle={styles.iconStlye}
-                    labelStyle={styles.labelStyle}
-                  />
-                  <Icon
-                    iconSrc="/images/starIcon.png"
-                    label={displayRating(movie)}
-                    iconStyle={styles.iconStlye}
-                    labelStyle={styles.labelStyle}
-                  />
-                </div>
-                <div className="wrapper-top__right__body__desc">
-                  <p className="wrapper-top__right__body__desc__p">
-                    {movie.description}
-                  </p>
-                </div>
-              </div>
+              <ModifyMovie role={role} movie={movie} />
+              <Details movie={movie} />
             </div>
           </div>
           <div className="desc-page__wrapper-bottom"></div>

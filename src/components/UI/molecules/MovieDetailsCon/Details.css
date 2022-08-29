@@ -1,0 +1,16 @@
+.details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+}
+.details-icons {
+  margin: 4rem 4.5rem;
+}
+.details-description {
+  border: var(--border-color-primary);
+  border-radius: var(--border-radius);
+  padding: 1.8rem;
+  height: 100%;
+  width: 45%;
+}
