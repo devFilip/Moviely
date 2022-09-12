@@ -1,4 +1,4 @@
-import { Comment } from "./CommentModel";
+import { CommentModel } from "./CommentModel";
 import { RatingModel } from "./RatingsModel";
 
 export interface Movie {
@@ -10,7 +10,7 @@ export interface Movie {
   imageUrl: string;
   country: string;
   description: string;
-  comments: Array<Comment>;
+  comments: Array<CommentModel>;
   ratings: Array<RatingModel>;
   movieTrailer: string;
 }

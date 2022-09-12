@@ -1,4 +1,5 @@
 import {
+  requestCommentMovie,
   requestGetFilteredMovies,
   requestGetMovie,
   requestGetMovies,
@@ -6,6 +7,7 @@ import {
 import {
   setFilteredMovies,
   setMovie,
+  setMovieComment,
   setMovies,
 } from "../../redux/toolkit/moviesSlice";
 import { call, put } from "redux-saga/effects";
@@ -40,4 +42,10 @@ export function* handleGetMovie(action: Action) {
   } catch (error) {
     console.log(error);
   }
+}
+export function* handleCommentMovie(action: Action) {
+  const { movieId, comment, movie } = action.payload;
+  try {
+    yield call(requestCommentMovie, movie, movieId, comment);
+  } catch (error) {}
 }

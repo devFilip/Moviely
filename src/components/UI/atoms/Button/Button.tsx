@@ -5,16 +5,32 @@ interface Button {
   color: string;
   size: string;
   textColor: string;
+  padding?: string;
+  fontSize?: string;
 }
 
-const Button: React.FC<Button> = ({ text, color, size, textColor }) => {
+const Button: React.FC<Button> = ({
+  text,
+  color,
+  size,
+  padding,
+  fontSize,
+  textColor,
+}) => {
   return (
-    <div
+    <button
       className="button"
-      style={{ color: textColor, background: color, width: size }}
+      style={{
+        color: textColor,
+        background: color,
+        fontSize,
+        width: size,
+        padding: padding ? padding : "0.2rem",
+        height: "100%",
+      }}
     >
       <p>{text}</p>
-    </div>
+    </button>
   );
 };
 

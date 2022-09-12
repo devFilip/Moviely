@@ -6,11 +6,13 @@ import {
 import { watcherSaga } from "../../saga/rootSaga";
 import createSagaMiddleware from "redux-saga";
 import movieReducer from "../toolkit/moviesSlice";
+import userReducer from "../toolkit/userSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 
 const reducer = combineReducers({
   movies: movieReducer,
+  users: userReducer,
 });
 
 const store = configureStore({

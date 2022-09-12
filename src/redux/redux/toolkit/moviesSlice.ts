@@ -22,6 +22,9 @@ const movieSlice = createSlice({
     setMovie: (state, action: Action): any => {
       return { ...state, movie: action.payload };
     },
+    setMovieComment: (state, acton: Action) => {
+      return { ...state };
+    },
   },
 });
 
@@ -32,6 +35,7 @@ export const {
   setFilteredMovies,
   getMovie,
   setMovie,
+  setMovieComment,
 } = movieSlice.actions;
 
 export default movieSlice.reducer;
