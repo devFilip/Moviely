@@ -21,9 +21,11 @@
 }
 .nav__item {
   border-right: 1px solid rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
   margin: 0 1.4rem 0 0; /* trbl */
   padding-right: 1.4rem;
+  text-decoration: none;
 }
 .nav__icon {
   align-items: center;
