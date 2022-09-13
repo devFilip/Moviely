@@ -23,7 +23,7 @@ const ModifyMovie: React.FC<ModifyMovie> = ({ role, movie }) => {
           <Icon iconSrc="/images/trash.png" iconStyle={{ cursor: "pointer" }} />
         </div>
       ) : (
-        <Rating rating={rate} />
+        <Rating rating={rate} movie={movie} />
       )}
     </div>
   );

@@ -1,7 +1,7 @@
 import api from "../api/axios";
 
 class UserService {
-  client;
+  private client;
   constructor() {
     this.client = api;
   }

@@ -21,8 +21,6 @@ class MovieService {
       const newMovies = data.filter((movie: Movie) => {
         return filterObj.grade === Math.round(displayRating(movie));
       });
-      console.log("Movie service", newMovies);
-
       return newMovies;
     }
     const { data } = await this.client?.get(url);
@@ -31,13 +29,18 @@ class MovieService {
   };
 
   getMovie = (id: string) => this.client?.get(`/movies/${id}`);
-  commentMovie = (id: string, movie: Movie, comment: CommentModel) =>
-    this.client?.post(`/movies/${id}`, {
+
+  commentMovie = (comment: CommentModel, movie: Movie) =>
+    this.client?.put(`/movies/${movie.id}`, {
       ...movie,
       comments: [...movie.comments, comment],
     });
-  rateMovie = (id: string, rating: RatingModel) =>
-    this.client?.post(`/movies/${id}/ratings`, rating);
+
+  rateMovie = (movie: Movie, rating: RatingModel) =>
+    this.client?.put(`/movies/${movie.id}`, {
+      ...movie,
+      ratings: [...movie.ratings, rating],
+    });
 }
 
 export default new MovieService();

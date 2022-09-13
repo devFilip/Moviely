@@ -11,6 +11,7 @@ const AddToWatchList = () => {
         text="Add to my watch list"
         color="#2596BE"
         size="30%"
+        padding="1rem"
         textColor="white"
       />
     </div>

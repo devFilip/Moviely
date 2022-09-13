@@ -5,13 +5,17 @@ import { Movie } from "../../../../models/MovieModel";
 import { FaStar } from "@react-icons/all-files/fa/FaStar";
 
 import "./Rating.css";
+import { v4 } from "uuid";
+import { RatingModel } from "../../../../models/RatingsModel";
+import { addRating } from "../../../../redux/redux/toolkit/ratingsSlice";
+import { setMovieRating } from "../../../../redux/redux/toolkit/moviesSlice";
 
 interface Rating {
   movie?: Movie;
   rating: number;
 }
 
-const Rating: React.FC<Rating> = ({ rating }) => {
+const Rating: React.FC<Rating> = ({ rating, movie }) => {
   const [rate, setRate] = useState<number>(0);
   const [hover, setHover] = useState<number>(0);
   const { id } = useParams();
@@ -27,15 +31,14 @@ const Rating: React.FC<Rating> = ({ rating }) => {
     if (!value || value === 0) return;
 
     setRate(value);
-    // const data: Rating = {
-    //   ...rate,
-    // id: v4(),
-    //   movieId: id as string,
-    //   grade: value,
-    // };
-    // setRate(data);
-    // dispatch(rateTheMovie(id as string, movie, data));
-    // dispatch(addRating(data));
+    const rating: RatingModel = {
+      id: v4(),
+      email: "random@gmail.com",
+      movieId: id as string,
+      grade: value,
+    };
+    dispatch(setMovieRating({ movie, rating }));
+    dispatch(addRating(rating));
   };
   return (
     <div className="rating">

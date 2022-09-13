@@ -12,6 +12,8 @@ import MovieComments from "../../UI/organisms/MovieComments/MovieComments";
 import { getUsers } from "../../../redux/redux/toolkit/userSlice";
 import Button from "../../UI/atoms/Button/Button";
 import AddToWatchList from "../../UI/molecules/MovieAddWatch/AddToWatchList";
+import { v4 } from "uuid";
+import { addComment } from "../../../redux/redux/toolkit/commentsSlice";
 
 const DescriptionPage = () => {
   const [commentContent, setCommentContent] = useState("");
@@ -19,29 +21,26 @@ const DescriptionPage = () => {
   const { id } = useParams();
   useEffect(() => {
     dispatch(getMovie(id));
-    dispatch(getUsers());
   }, []);
-  let role = "user";
+  let role = "admin";
   const movie = useSelector((state: RootState) => state.movies.movie);
-  const users = useSelector((state: RootState) => state.users.users);
+
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentContent(e.target.value);
   };
-  // id: string;
-  // email: string;
-  // movieId: string;
-  // content: string;
-  // approved: boolean;
   const handleComment = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const commentObj = {
+    if (!commentContent) return;
+
+    const comment = {
+      id: v4(),
       email: "random@gmail.com",
       movieId: id,
       content: commentContent,
-      approved: true,
+      approved: false,
     };
-    dispatch(setMovieComment(commentObj));
-    console.log(commentContent);
+    dispatch(setMovieComment({ movie, comment }));
+    dispatch(addComment(comment));
   };
 
   const jsx = (movie: Movie) => {

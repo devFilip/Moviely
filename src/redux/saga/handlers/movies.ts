@@ -3,6 +3,7 @@ import {
   requestGetFilteredMovies,
   requestGetMovie,
   requestGetMovies,
+  requestRateMovie,
 } from "../requests/movies";
 import {
   setFilteredMovies,
@@ -44,8 +45,25 @@ export function* handleGetMovie(action: Action) {
   }
 }
 export function* handleCommentMovie(action: Action) {
-  const { movieId, comment, movie } = action.payload;
+  const { comment, movie } = action.payload;
+  console.log(movie, "MOVIE");
+  console.log(comment, "COMMENT");
+
   try {
-    yield call(requestCommentMovie, movie, movieId, comment);
-  } catch (error) {}
+    const response: AxiosResponse = yield call(
+      requestCommentMovie,
+      movie,
+      comment
+    );
+  } catch (error) {
+    console.error(error);
+  }
+}
+export function* handleRateMovie(action: Action) {
+  const { movie, rating } = action.payload;
+  try {
+    yield call(requestRateMovie, movie, rating);
+  } catch (error) {
+    console.log(error);
+  }
 }
