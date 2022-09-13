@@ -1,5 +1,16 @@
-import { requestGetFilteredMovies, requestGetMovies } from "../requests/movies";
-import { setFilteredMovies, setMovies } from "../../redux/toolkit/moviesSlice";
+import {
+  requestCommentMovie,
+  requestGetFilteredMovies,
+  requestGetMovie,
+  requestGetMovies,
+  requestRateMovie,
+} from "../requests/movies";
+import {
+  setFilteredMovies,
+  setMovie,
+  setMovieComment,
+  setMovies,
+} from "../../redux/toolkit/moviesSlice";
 import { call, put } from "redux-saga/effects";
 import { AxiosResponse } from "axios";
 import { Action } from "../../redux/toolkit/configureStore";
@@ -20,6 +31,38 @@ export function* handleGetFilteredMovies(action: Action) {
       payload
     );
     yield put(setFilteredMovies(response));
+  } catch (error) {
+    console.log(error);
+  }
+}
+export function* handleGetMovie(action: Action) {
+  const { payload } = action;
+  try {
+    const response: AxiosResponse = yield call(requestGetMovie, payload);
+    yield put(setMovie(response?.data));
+  } catch (error) {
+    console.log(error);
+  }
+}
+export function* handleCommentMovie(action: Action) {
+  const { comment, movie } = action.payload;
+  console.log(movie, "MOVIE");
+  console.log(comment, "COMMENT");
+
+  try {
+    const response: AxiosResponse = yield call(
+      requestCommentMovie,
+      movie,
+      comment
+    );
+  } catch (error) {
+    console.error(error);
+  }
+}
+export function* handleRateMovie(action: Action) {
+  const { movie, rating } = action.payload;
+  try {
+    yield call(requestRateMovie, movie, rating);
   } catch (error) {
     console.log(error);
   }

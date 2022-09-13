@@ -4,6 +4,7 @@
   --background-color-secondary: #fff;
   --blue-color-primary: #2596be;
   --box-shadow-primary: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  --border-color-primary: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 * {
@@ -46,4 +47,21 @@ code {
 .icon__img__xs {
   width: 20px;
   height: 20px;
+}
+.view {
+  align-items: center;
+  background: var(--background-color-primary);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5rem auto 5rem; /* trbl   */
+  padding: 3.6rem 4.6rem; /* trbl */
+  width: 60%;
+}
+.view-wrap {
+  background: var(--background-color-secondary);
+  border-radius: var(--border-radius);
+  padding: 4.5rem;
+  width: 100%;
 }

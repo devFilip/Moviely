@@ -1,0 +1,32 @@
+.comment {
+  align-items: center;
+  border-radius: var(--border-radius);
+  border: var(--border-color-primary);
+  display: flex;
+  margin-top: 1rem;
+  padding: 1rem;
+  width: 100%;
+}
+.comment__user {
+  align-items: center;
+  border-right: var(--border-color-primary);
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0.5rem 0;
+  width: 25%;
+}
+.comment__content {
+  align-items: center;
+  display: flex;
+  font-size: 2rem;
+  justify-content: center;
+  width: 75%;
+}
+@media screen and (max-width: 1420px) {
+  .comment span {
+    display: none;
+  }
+  .comment__content {
+    font-size: 1.5rem;
+  }
+}

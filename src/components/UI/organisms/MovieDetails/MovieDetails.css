@@ -1,0 +1,30 @@
+.movie-details {
+  border-radius: var(--border-radius);
+  border: var(--border-color-primary);
+  display: flex;
+}
+.movie-details__left {
+  border-bottom-left-radius: 20px;
+  border-top-left-radius: 20px;
+  object-fit: cover;
+  width: 50%;
+}
+.movie-details__right {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 50%;
+}
+@media screen and (max-width: 1260px) {
+  .movie-details__left {
+    display: none;
+  }
+  .movie-details__right {
+    overflow-x: scroll;
+    width: 100%;
+  }
+  .movie-details__right::-webkit-scrollbar {
+    display: none;
+  }
+}

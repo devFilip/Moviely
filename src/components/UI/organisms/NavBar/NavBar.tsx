@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./NavBar.css";
 
 interface NavBar {
@@ -13,7 +14,9 @@ const NavBar: React.FC<NavBar> = ({ role }) => {
   return (
     <>
       <div className="nav">
-        <div className="nav__title">Home Page</div>
+        <Link to="/" className="nav__title">
+          Home Page
+        </Link>
         <div className="nav__navigation">
           {role === "user" ? (
             <p className="nav__item">List of my watched movies</p>

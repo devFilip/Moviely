@@ -1,0 +1,17 @@
+.modify-movie {
+  border-bottom: var(--border-color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 20%;
+}
+.modify-movie__title {
+  margin: 1rem;
+  font-size: 3rem;
+}
+@media screen and (max-width: 1660px) {
+  .modify-movie__title {
+    font-size: 2rem;
+  }
+}

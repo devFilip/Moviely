@@ -1,0 +1,8 @@
+.rating {
+  display: flex;
+  margin-right: 1.5rem;
+}
+.radioInput {
+  cursor: pointer;
+  display: none;
+}

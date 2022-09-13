@@ -2,11 +2,12 @@
   align-items: center;
   border-radius: var(--border-radius);
   color: #fff;
+  cursor: pointer;
   display: flex;
   height: 2rem;
   justify-content: center;
-  cursor: pointer;
   transition: all 0.2s;
+  border: none;
 }
 .button:active {
   box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
