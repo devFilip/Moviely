@@ -2,10 +2,11 @@ import "./DropDownList.css";
 
 interface DropDownList {
   name: string;
+  value?: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const DropDownList: React.FC<DropDownList> = ({ name, onChange }) => {
+const DropDownList: React.FC<DropDownList> = ({ name, value, onChange }) => {
   return (
     <div className="drop-list">
       <select
@@ -13,7 +14,7 @@ const DropDownList: React.FC<DropDownList> = ({ name, onChange }) => {
         name={name}
         onChange={(e) => onChange(e)}
       >
-        <option value="">Genre</option>
+        <option value={value ? value : ""}>{value ? value : "Genre"}</option>
         <option value="ACTION">Action</option>
         <option value="COMEDY">Comedy</option>
         <option value="ROMANCE">Romance</option>
@@ -21,7 +22,7 @@ const DropDownList: React.FC<DropDownList> = ({ name, onChange }) => {
         <option value="CRIME">Crime</option>
         <option value="DRAMA">Drama</option>
       </select>
-      <img src="images/arrowDown.png" alt="arrow pointing down" />
+      <img src="/images/arrowDown.png" alt="arrow pointing down" />
     </div>
   );
 };

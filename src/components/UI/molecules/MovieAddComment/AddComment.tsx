@@ -15,7 +15,12 @@ const AddComment: React.FC<AddComment> = ({ onChange, onComment }) => {
         <span>my-username</span>
       </div>
       <form className="addComment__content" onSubmit={(e) => onComment(e)}>
-        <TextField name="" onChange={(e) => onChange(e)} />
+        <div className="addComment__content__field">
+          <TextField
+            placeholder="Leave your comment"
+            onChange={(e) => onChange(e)}
+          />
+        </div>
         <Button
           fontSize="2rem"
           text="Submit"

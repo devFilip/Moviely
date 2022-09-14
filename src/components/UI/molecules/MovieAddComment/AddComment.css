@@ -24,6 +24,9 @@
   justify-content: space-evenly;
   width: 75%;
 }
+.addComment__content__field {
+  width: 80%;
+}
 @media screen and (max-width: 1420px) {
   .addComment__user span {
     display: none;

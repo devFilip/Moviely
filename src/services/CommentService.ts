@@ -2,7 +2,7 @@ import api from "../api/axios";
 import { CommentModel } from "../models/CommentModel";
 
 class CommentService {
-  client;
+  private client;
   constructor() {
     this.client = api;
   }

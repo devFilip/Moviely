@@ -62,6 +62,6 @@ code {
 .view-wrap {
   background: var(--background-color-secondary);
   border-radius: var(--border-radius);
-  padding: 4.5rem;
+  padding: 0 4.5rem 4.5rem;
   width: 100%;
 }

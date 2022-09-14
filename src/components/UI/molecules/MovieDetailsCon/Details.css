@@ -1,6 +1,6 @@
 .details {
-  display: flex;
   align-items: center;
+  display: flex;
   justify-content: center;
   margin: 2rem 0;
 }
@@ -8,10 +8,10 @@
   margin: 4rem 4.5rem;
 }
 .details-description {
-  border: var(--border-color-primary);
   border-radius: var(--border-radius);
-  padding: 1.8rem;
+  border: var(--border-color-primary);
   height: 100%;
+  padding: 1.8rem;
   width: 45%;
 }
 @media screen and (max-width: 786px) {

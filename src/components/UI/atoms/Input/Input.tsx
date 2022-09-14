@@ -2,7 +2,7 @@ import "./Input.css";
 
 interface Input {
   placeholder: string;
-  value: string;
+  value: string | number;
   name: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }

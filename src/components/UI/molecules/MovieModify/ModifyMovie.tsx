@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Movie } from "../../../../models/MovieModel";
 import { displayRating } from "../../../../utils/averageRating";
 import Icon from "../../atoms/Icon/Icon";
@@ -16,10 +17,12 @@ const ModifyMovie: React.FC<ModifyMovie> = ({ role, movie }) => {
       <span className="modify-movie__title">{movie.title}</span>
       {role === "admin" ? (
         <div style={{ display: "flex" }}>
-          <Icon
-            iconSrc="/images/edit.png"
-            iconStyle={{ cursor: "pointer", marginRight: "1.5rem" }}
-          />
+          <Link to={`/movieForm/${movie.id}`}>
+            <Icon
+              iconSrc="/images/edit.png"
+              iconStyle={{ cursor: "pointer", marginRight: "1.5rem" }}
+            />
+          </Link>
           <Icon iconSrc="/images/trash.png" iconStyle={{ cursor: "pointer" }} />
         </div>
       ) : (

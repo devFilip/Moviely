@@ -2,8 +2,8 @@
   background: var(--background-color-secondary);
   border-radius: var(--border-radius);
   margin-bottom: 4.9rem;
-  width: 100%;
   padding: 1rem 4rem; /* trbl */
+  width: 100%;
 }
 .filter-form__top {
   align-items: center;
@@ -11,6 +11,9 @@
   justify-content: space-evenly;
   width: 100%;
   margin-bottom: 0.7rem;
+}
+.filter-form__width {
+  width: 31.8%;
 }
 .filter-form__bottom {
   align-items: center;

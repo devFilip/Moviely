@@ -9,7 +9,6 @@ function App() {
     <div className="App">
       <NavBar role="admin" />
       <Routes>
-        <Route path="/movieForm/new" element={<FormPage />}></Route>
         <Route path="/movieForm/:id" element={<FormPage />}></Route>
         <Route path="/movie/:id" element={<DescriptionPage />}></Route>
         <Route path="/" element={<HomePage role="admin" />}></Route>

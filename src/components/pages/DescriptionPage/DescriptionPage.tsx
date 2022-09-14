@@ -9,8 +9,6 @@ import {
 } from "../../../redux/redux/toolkit/moviesSlice";
 import MovieDetails from "../../UI/organisms/MovieDetails/MovieDetails";
 import MovieComments from "../../UI/organisms/MovieComments/MovieComments";
-import { getUsers } from "../../../redux/redux/toolkit/userSlice";
-import Button from "../../UI/atoms/Button/Button";
 import AddToWatchList from "../../UI/molecules/MovieAddWatch/AddToWatchList";
 import { v4 } from "uuid";
 import { addComment } from "../../../redux/redux/toolkit/commentsSlice";
@@ -46,7 +44,7 @@ const DescriptionPage = () => {
   const jsx = (movie: Movie) => {
     return (
       <div className="view">
-        <div className="view-wrap">
+        <div className="view-wrap" style={{ paddingTop: "4.5rem" }}>
           <MovieDetails movie={movie} role={role} />
           {role !== "admin" ? <AddToWatchList /> : ""}
           <MovieComments
