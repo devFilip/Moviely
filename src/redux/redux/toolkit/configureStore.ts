@@ -14,21 +14,32 @@ import storage from "redux-persist/lib/storage";
 
 const sagaMiddleware = createSagaMiddleware();
 
-const config = {
-  key: "main-root",
+// const config = {
+//   key: "main-root",
+//   storage,
+//   whitelist: ["users"],
+// };
+const usersConfig = {
+  key: "user",
   storage,
+  blacklist: ["users"],
+};
+const moviesConfig = {
+  key: "movie",
+  storage,
+  blacklist: ["movies"],
 };
 
-const reducer = combineReducers({
-  users: userReducer,
-  movies: movieReducer,
+const reducer = {
+  users: persistReducer(usersConfig, userReducer),
+  movies: persistReducer(moviesConfig, movieReducer),
   comments: commentReducer,
   ratings: ratingReducer,
-});
-const persistedReducer = persistReducer(config, reducer);
+};
+// const persistedReducer = persistReducer(config, reducer);
 
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer,
   middleware: [sagaMiddleware],
 });
 

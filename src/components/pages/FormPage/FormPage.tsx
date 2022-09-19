@@ -16,6 +16,7 @@ import { RootState } from "../../../redux/redux/toolkit/configureStore";
 import { Movie } from "../../../models/MovieModel";
 import { getFormObj } from "../../../utils/getFormData";
 import { v4 } from "uuid";
+const Joi = require("joi-browser");
 
 interface formInput {
   title: string;
@@ -39,6 +40,7 @@ const FormPage = () => {
     movieTrailer: "",
     description: "",
   });
+  const [formErrors, setFormErrors] = useState<any>({});
   const { id } = useParams();
   const navigate = useNavigate();
   const movie = useSelector((state: RootState) => state.movies.movie);
@@ -50,6 +52,32 @@ const FormPage = () => {
       setForm(formObj as any);
     }
   }, []);
+  const schema = Joi.object({
+    title: Joi.string().min(2).max(20).required(),
+    genre: Joi.string().required(),
+    year: Joi.number().required(),
+  });
+  const validate = () => {
+    const validationFields = {
+      title: form.title,
+      genre: form.genre,
+      year: form.year,
+    };
+    const config = {
+      abortEarly: false,
+    };
+    const result = Joi.validate(validationFields, schema, config);
+    console.log(result);
+
+    if (result.erorr === null) return null;
+
+    const errors: any = {};
+
+    for (let item of result.error.details) errors[item.path[0]] = item.message;
+
+    console.log(errors);
+    return errors;
+  };
 
   const handleChange = (
     e:
@@ -63,7 +91,7 @@ const FormPage = () => {
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    setFormErrors(validate());
     if (id === "new") {
       const movie: any = {
         ...form,
@@ -72,8 +100,8 @@ const FormPage = () => {
         ratings: [],
       };
 
-      dispatch(postMovie(movie));
-      setTimeout(() => navigate("/"), 2500);
+      // dispatch(postMovie(movie));
+      // setTimeout(() => navigate("/"), 2500);
     } else {
       const movieCopy: any = {
         ...movie,
@@ -86,8 +114,8 @@ const FormPage = () => {
         movieTrailer: form.movieTrailer,
         description: form.description,
       };
-      dispatch(updateMovie(movieCopy));
-      setTimeout(() => navigate("/"), 2500);
+      // dispatch(updateMovie(movieCopy));
+      // setTimeout(() => navigate("/"), 2500);
     }
   };
   return (
@@ -103,11 +131,13 @@ const FormPage = () => {
             name="title"
             onChange={(e) => handleChange(e)}
           />
+          {formErrors?.title && <>{formErrors.title}</>}
           <DropDownList
             value={form.genre}
             name="genre"
             onChange={(e) => handleChange(e)}
           />
+          {formErrors?.genre && <>{formErrors.genre}</>}
         </div>
         <div className="form">
           <Input
@@ -116,6 +146,7 @@ const FormPage = () => {
             name="year"
             onChange={(e) => handleChange(e)}
           />
+          {formErrors?.year && <>{formErrors.year}</>}
           <Input
             placeholder="Runtime"
             value={form.runtime}
