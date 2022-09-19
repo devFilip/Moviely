@@ -4,8 +4,10 @@ import {
   getFilteredMovies,
   getMovie,
   getMovies,
+  postMovie,
   setMovieComment,
   setMovieRating,
+  updateMovie,
 } from "../redux/toolkit/moviesSlice";
 import { addRating } from "../redux/toolkit/ratingsSlice";
 import { getUser, getUsers } from "../redux/toolkit/userSlice";
@@ -15,7 +17,9 @@ import {
   handleGetFilteredMovies,
   handleGetMovie,
   handleGetMovies,
+  handlePostMovie,
   handleRateMovie,
+  handleUpdateMovie,
 } from "./handlers/movies";
 import { handleAddRating } from "./handlers/ratings";
 import { handleGetUser, handleGetUsers } from "./handlers/users";
@@ -30,4 +34,6 @@ export function* watcherSaga() {
   yield takeLatest(setMovieRating.type, handleRateMovie);
   yield takeLatest(addComment.type, handleAddComment);
   yield takeLatest(addRating.type, handleAddRating);
+  yield takeLatest(postMovie.type, handlePostMovie);
+  yield takeLatest(updateMovie.type, handleUpdateMovie);
 }

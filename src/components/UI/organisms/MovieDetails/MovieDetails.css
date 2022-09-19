@@ -6,8 +6,9 @@
 .movie-details__left {
   border-bottom-left-radius: 20px;
   border-top-left-radius: 20px;
-  object-fit: cover;
+  object-fit: fill;
   width: 50%;
+  max-height: 500px;
 }
 .movie-details__right {
   align-items: center;

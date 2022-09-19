@@ -1,16 +1,21 @@
 import Input from "../../UI/atoms/Input/Input";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./FormPage.css";
 import DropDownList from "../../UI/atoms/DropDownList/DropDownList";
 import TextField from "../../UI/atoms/TextField/TextField";
 import BlueTitle from "../../UI/atoms/BlueTitle/BlueTitle";
 import Button from "../../UI/atoms/Button/Button";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovie } from "../../../redux/redux/toolkit/moviesSlice";
+import {
+  getMovie,
+  postMovie,
+  updateMovie,
+} from "../../../redux/redux/toolkit/moviesSlice";
 import { RootState } from "../../../redux/redux/toolkit/configureStore";
 import { Movie } from "../../../models/MovieModel";
 import { getFormObj } from "../../../utils/getFormData";
+import { v4 } from "uuid";
 
 interface formInput {
   title: string;
@@ -19,7 +24,7 @@ interface formInput {
   runtime: string | number;
   imageUrl: string;
   country: string;
-  trailerUrl: string;
+  movieTrailer: string;
   description: string;
 }
 
@@ -31,10 +36,11 @@ const FormPage = () => {
     runtime: "",
     imageUrl: "",
     country: "",
-    trailerUrl: "",
+    movieTrailer: "",
     description: "",
   });
   const { id } = useParams();
+  const navigate = useNavigate();
   const movie = useSelector((state: RootState) => state.movies.movie);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -55,9 +61,38 @@ const FormPage = () => {
     formCopy[e.target.name as keyof formInput] = e.target.value;
     setForm(formCopy as formInput);
   };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (id === "new") {
+      const movie: any = {
+        ...form,
+        id: v4(),
+        comments: [],
+        ratings: [],
+      };
+
+      dispatch(postMovie(movie));
+      setTimeout(() => navigate("/"), 2500);
+    } else {
+      const movieCopy: any = {
+        ...movie,
+        title: form.title,
+        genre: form.genre,
+        year: form.year,
+        runtime: form.runtime,
+        imageUrl: form.imageUrl,
+        country: form.country,
+        movieTrailer: form.movieTrailer,
+        description: form.description,
+      };
+      dispatch(updateMovie(movieCopy));
+      setTimeout(() => navigate("/"), 2500);
+    }
+  };
   return (
     <div className="view">
-      <form className="view-wrap form-wrap">
+      <form className="view-wrap form-wrap" onSubmit={(e) => handleSubmit(e)}>
         <div className="--special">
           <BlueTitle title={id === "new" ? "New Movie" : "Edit Movie"} />
         </div>
@@ -105,8 +140,8 @@ const FormPage = () => {
         <div className="--special">
           <Input
             placeholder="Trailer Url"
-            value={form.trailerUrl}
-            name="trailerUrl"
+            value={form.movieTrailer}
+            name="movieTrailer"
             onChange={(e) => handleChange(e)}
           />
         </div>

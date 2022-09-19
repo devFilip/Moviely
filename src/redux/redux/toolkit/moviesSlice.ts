@@ -36,6 +36,14 @@ const movieSlice = createSlice({
         movie: { ...movie, ratings: [...movie.ratings, rating] },
       };
     },
+    postMovie: (state, action: Action): any => {
+      const { movie } = action.payload;
+      return { ...state, movies: [...state.movies, movie] };
+    },
+    updateMovie: (state, action: Action): any => {
+      const { movie } = action.payload;
+      return { ...state, movie: { ...movie } };
+    },
   },
 });
 
@@ -48,6 +56,8 @@ export const {
   setMovie,
   setMovieComment,
   setMovieRating,
+  postMovie,
+  updateMovie,
 } = movieSlice.actions;
 
 export default movieSlice.reducer;

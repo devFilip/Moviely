@@ -41,6 +41,9 @@ class MovieService {
       ...movie,
       ratings: [...movie.ratings, rating],
     });
+  postMovie = (movie: Movie) => this.client?.post("/movies", movie);
+  updateMovie = (movie: Movie) =>
+    this.client?.put(`/movies/${movie.id}`, { ...movie });
 }
 
 export default new MovieService();

@@ -9,7 +9,7 @@ export const getFormObj = (movie: Movie) => {
       runtime: movie.runtime,
       imageUrl: movie.imageUrl,
       country: movie.country,
-      trailerUrl: movie.movieTrailer,
+      movieTrailer: movie.movieTrailer,
       description: movie.description,
     };
 };
