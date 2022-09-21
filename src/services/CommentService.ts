@@ -8,6 +8,7 @@ class CommentService {
   }
   addComment = (comment: CommentModel) =>
     this.client?.post(`/comments`, comment);
+  getComments = () => this.client?.get("/comments");
 }
 
 export default new CommentService();

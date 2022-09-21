@@ -1,5 +1,6 @@
 import {
   requestCommentMovie,
+  requestDeleteMovie,
   requestGetFilteredMovies,
   requestGetMovie,
   requestGetMovies,
@@ -81,6 +82,13 @@ export function* handlePostMovie(action: Action) {
 export function* handleUpdateMovie(action: Action) {
   try {
     yield call(requestUpdateMovie, action.payload);
+  } catch (error) {
+    console.log(error);
+  }
+}
+export function* handleDeleteMovie(action: Action) {
+  try {
+    yield call(requestDeleteMovie, action.payload);
   } catch (error) {
     console.log(error);
   }

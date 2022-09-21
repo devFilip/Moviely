@@ -22,3 +22,5 @@ export const requestPostMovie = (movie: Movie) => MovieService.postMovie(movie);
 
 export const requestUpdateMovie = (movie: Movie) =>
   MovieService.updateMovie(movie);
+
+export const requestDeleteMovie = (id: string) => MovieService.deleteMovie(id);

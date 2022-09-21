@@ -7,7 +7,7 @@ import { RatingModel } from "../models/RatingsModel";
 import { displayRating } from "../utils/averageRating";
 
 class MovieService {
-  client = api;
+  private client = api;
 
   getMovies = () => this.client?.get("/movies");
 
@@ -41,9 +41,13 @@ class MovieService {
       ...movie,
       ratings: [...movie.ratings, rating],
     });
+
   postMovie = (movie: Movie) => this.client?.post("/movies", movie);
+
   updateMovie = (movie: Movie) =>
     this.client?.put(`/movies/${movie.id}`, { ...movie });
+
+  deleteMovie = (id: string) => this.client?.delete(`/movies/${id}`);
 }
 
 export default new MovieService();

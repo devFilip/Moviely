@@ -21,17 +21,19 @@ const AddComment: React.FC<AddComment> = ({ onChange, onComment }) => {
             onChange={(e) => onChange(e)}
           />
         </div>
-        <Button
-          fontSize="2rem"
-          text="Submit"
-          textColor="white"
-          size="15%"
-          color="#2596BE"
-          padding="3rem"
-        />
+        <Button style={styles.submit} text="Submit" />
       </form>
     </div>
   );
+};
+const styles = {
+  submit: {
+    fontSize: "2rem",
+    color: "white",
+    width: "15%",
+    background: "#2596BE",
+    padding: "3rem",
+  },
 };
 
 export default AddComment;

@@ -1,6 +1,7 @@
 import { takeLatest } from "redux-saga/effects";
-import { addComment } from "../redux/toolkit/commentsSlice";
+import { addComment, getComments } from "../redux/toolkit/commentsSlice";
 import {
+  deleteMovie,
   getFilteredMovies,
   getMovie,
   getMovies,
@@ -11,9 +12,10 @@ import {
 } from "../redux/toolkit/moviesSlice";
 import { addRating } from "../redux/toolkit/ratingsSlice";
 import { getUser, getUsers } from "../redux/toolkit/userSlice";
-import { handleAddComment } from "./handlers/comments";
+import { handleAddComment, handleGetComments } from "./handlers/comments";
 import {
   handleCommentMovie,
+  handleDeleteMovie,
   handleGetFilteredMovies,
   handleGetMovie,
   handleGetMovies,
@@ -36,4 +38,6 @@ export function* watcherSaga() {
   yield takeLatest(addRating.type, handleAddRating);
   yield takeLatest(postMovie.type, handlePostMovie);
   yield takeLatest(updateMovie.type, handleUpdateMovie);
+  yield takeLatest(deleteMovie.type, handleDeleteMovie);
+  yield takeLatest(getComments.type, handleGetComments);
 }

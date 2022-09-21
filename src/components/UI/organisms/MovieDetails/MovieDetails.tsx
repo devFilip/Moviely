@@ -8,9 +8,10 @@ import "./MovieDetails.css";
 interface MovieDetails {
   movie: Movie;
   role: string;
+  onModal: () => void;
 }
 
-const MovieDetails: React.FC<MovieDetails> = ({ movie, role }) => {
+const MovieDetails: React.FC<MovieDetails> = ({ movie, role, onModal }) => {
   return (
     <div className="movie-details">
       <img
@@ -19,7 +20,7 @@ const MovieDetails: React.FC<MovieDetails> = ({ movie, role }) => {
         alt="movie image"
       />
       <div className="movie-details__right">
-        <ModifyMovie role={role} movie={movie} />
+        <ModifyMovie role={role} movie={movie} onModal={onModal} />
         <Details movie={movie} />
       </div>
     </div>

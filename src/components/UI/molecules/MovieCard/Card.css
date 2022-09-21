@@ -70,10 +70,12 @@
   align-items: center;
   justify-content: center;
   margin-top: 2.4rem;
+  text-decoration: none;
 }
 .card__button__edit {
   margin-right: 1.4rem;
   width: 40%;
+  text-decoration: none;
 }
 .card--margin {
   margin-right: 2rem;

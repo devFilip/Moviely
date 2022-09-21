@@ -142,8 +142,6 @@ const FormPage = () => {
         movieTrailer: form.movieTrailer,
         description: form.description,
       };
-      console.log(movieCopy);
-
       dispatch(updateMovie(movieCopy));
       setTimeout(() => navigate("/"), 0);
     }
@@ -217,17 +215,19 @@ const FormPage = () => {
             onChange={(e) => handleChange(e)}
           />
         </div>
-        <Button
-          fontSize="2rem"
-          text="Submit"
-          textColor="white"
-          size="30%"
-          color="#2596BE"
-          padding="1rem"
-        />
+        <Button style={styles.submit} text="Submit" />
       </form>
     </div>
   );
+};
+const styles = {
+  submit: {
+    fontSize: "2rem",
+    color: "white",
+    width: "30%",
+    background: "#2596BE",
+    padding: "2rem",
+  },
 };
 
 export default FormPage;

@@ -25,7 +25,9 @@ const NavBar: React.FC<NavBar> = ({ role }) => {
               <NavLink to="/movieForm/new" className="nav__item">
                 Add new movie
               </NavLink>
-              <p className="nav__item">Pending comments</p>
+              <NavLink to="/pendingComments" className="nav__item">
+                Pending comments
+              </NavLink>
               <p className="nav__item">Pending Users</p>
             </>
           )}
