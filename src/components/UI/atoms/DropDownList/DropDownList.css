@@ -20,6 +20,11 @@
   text-decoration: none;
   width: 100%;
 }
+.drop-list__error {
+  color: red;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
 @media screen and (max-width: 1250px) {
   .drop-list__select {
     font-size: 1.5rem;

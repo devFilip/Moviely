@@ -40,7 +40,7 @@ const reducer = {
 
 const store = configureStore({
   reducer,
-  middleware: [sagaMiddleware],
+  middleware: [sagaMiddleware]
 });
 
 export const persistor = persistStore(store);

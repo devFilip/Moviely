@@ -52,31 +52,48 @@ const FormPage = () => {
       setForm(formObj as any);
     }
   }, []);
-  const schema = Joi.object({
-    title: Joi.string().min(2).max(20).required(),
-    genre: Joi.string().required(),
-    year: Joi.number().required(),
-  });
+  const schema: any = {
+    title: Joi.string().required().label("Title"),
+    genre: Joi.string().required().label("Genre"),
+    year: Joi.number().required().label("Year"),
+    imageUrl: Joi.string().required().label("Image"),
+  };
   const validate = () => {
     const validationFields = {
       title: form.title,
       genre: form.genre,
       year: form.year,
+      imageUrl: form.imageUrl,
     };
+    console.log(validationFields);
+
     const config = {
       abortEarly: false,
     };
     const result = Joi.validate(validationFields, schema, config);
-    console.log(result);
 
     if (result.erorr === null) return null;
+    else {
+      const errors: any = {};
 
-    const errors: any = {};
+      if (result.error) {
+        for (let item of result.error.details)
+          errors[item.path[0]] = item.message;
+      }
 
-    for (let item of result.error.details) errors[item.path[0]] = item.message;
-
-    console.log(errors);
-    return errors;
+      return errors;
+    }
+  };
+  const validateProperty = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLSelectElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const obj = { [e.target.name]: e.target.value };
+    const schemaField = { [e.target.name]: schema[e.target.name] };
+    const result = Joi.validate(obj, schemaField);
+    return result.error ? result.error.details[0].message : null;
   };
 
   const handleChange = (
@@ -85,13 +102,25 @@ const FormPage = () => {
       | React.ChangeEvent<HTMLSelectElement>
       | React.ChangeEvent<HTMLTextAreaElement>
   ) => {
+    const errors = { ...formErrors };
+    const errorMessage = validateProperty(e);
+
+    if (errorMessage) errors[e.target.name] = errorMessage;
+    else delete errors[e.target.name];
+
     const formCopy: formInput = { ...form };
     formCopy[e.target.name as keyof formInput] = e.target.value;
     setForm(formCopy as formInput);
+    setFormErrors(errors);
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormErrors(validate());
+    const errorsObj = validate();
+    if (Object.keys(errorsObj).length !== 0) {
+      setFormErrors(errorsObj);
+      return;
+    }
+
     if (id === "new") {
       const movie: any = {
         ...form,
@@ -99,9 +128,8 @@ const FormPage = () => {
         comments: [],
         ratings: [],
       };
-
-      // dispatch(postMovie(movie));
-      // setTimeout(() => navigate("/"), 2500);
+      dispatch(postMovie(movie));
+      setTimeout(() => navigate("/"), 300);
     } else {
       const movieCopy: any = {
         ...movie,
@@ -114,8 +142,10 @@ const FormPage = () => {
         movieTrailer: form.movieTrailer,
         description: form.description,
       };
-      // dispatch(updateMovie(movieCopy));
-      // setTimeout(() => navigate("/"), 2500);
+      console.log(movieCopy);
+
+      dispatch(updateMovie(movieCopy));
+      setTimeout(() => navigate("/"), 0);
     }
   };
   return (
@@ -129,24 +159,24 @@ const FormPage = () => {
             placeholder="Title"
             value={form.title}
             name="title"
+            error={formErrors.title}
             onChange={(e) => handleChange(e)}
           />
-          {formErrors?.title && <>{formErrors.title}</>}
           <DropDownList
             value={form.genre}
             name="genre"
+            error={formErrors.genre}
             onChange={(e) => handleChange(e)}
           />
-          {formErrors?.genre && <>{formErrors.genre}</>}
         </div>
         <div className="form">
           <Input
             placeholder="Year"
             value={form.year}
             name="year"
+            error={formErrors.year}
             onChange={(e) => handleChange(e)}
           />
-          {formErrors?.year && <>{formErrors.year}</>}
           <Input
             placeholder="Runtime"
             value={form.runtime}
@@ -159,6 +189,7 @@ const FormPage = () => {
             placeholder="Image Url"
             value={form.imageUrl}
             name="imageUrl"
+            error={formErrors.imageUrl}
             onChange={(e) => handleChange(e)}
           />
           <Input

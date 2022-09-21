@@ -10,6 +10,7 @@ import { RootState } from "../../../redux/redux/toolkit/configureStore";
 import FilterForm from "../../UI/organisms/FilterForm/FilterForm";
 import List from "../../UI/molecules/MovieList/List";
 import "./HomePage.css";
+import Loader from "../Loader/Loader";
 
 interface HomePage {
   role: string;
