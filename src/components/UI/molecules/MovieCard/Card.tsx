@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Movie } from "../../../../models/MovieModel";
 import { displayRating } from "../../../../utils/averageRating";
+import { approvedComments } from "../../../../utils/commentsHelper";
 import Button from "../../atoms/Button/Button";
 import MovieAlertModal from "../MovieAlertModal/MovieAlertModal";
 
@@ -34,7 +35,9 @@ const Card: React.FC<Card> = ({ item, modal, onModal, onDelete }) => {
           <span className="title">{item.title}</span>
           <div className="card__items">
             <div className="card__item card--margin">
-              <p className="card__item__number">{item.comments.length}</p>
+              <p className="card__item__number">
+                {approvedComments(item.comments).length}
+              </p>
               <img
                 className="icon__img__xs"
                 style={styles.imgComment}

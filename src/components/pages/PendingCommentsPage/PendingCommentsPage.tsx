@@ -8,39 +8,54 @@ import { CommentModel } from "../../../models/CommentModel";
 import BlueTitle from "../../UI/atoms/BlueTitle/BlueTitle";
 import Paginate from "../../UI/atoms/Paginate/Paginate";
 import "./PendingCommentsPage.css";
+import { Movie } from "../../../models/MovieModel";
+import { notApprovedComments } from "../../../utils/commentsHelper";
+import Loader from "../Loader/Loader";
 const PendingCommentsPage = () => {
   const [page, setPage] = useState<number>(1);
   const dispatch = useDispatch();
+  let offset = 0;
+  const loadComments = (offset: number) => dispatch(getComments(offset));
+
   useEffect(() => {
-    dispatch(getMovies());
-    dispatch(getComments());
+    dispatch(getComments(0));
+    window.addEventListener("scroll", (e: Event) => console.log(e), {
+      once: true,
+    });
   }, []);
-  const movies = useSelector((state: RootState) => state.movies.movies);
+
   const comments: Array<CommentModel> = useSelector(
     (state: RootState) => state.comments
   );
-  const notApprovedComments = (comments: Array<CommentModel>) => {
-    return comments.filter((comment) => !comment.approved);
+  const handleScroll = (e: React.ChangeEvent<Document>) => {
+    const { scrollTop, scrollHeight } = e.target.documentElement;
+    if (window.innerHeight + scrollTop >= scrollHeight) {
+      offset += 6;
+      loadComments(offset);
+    }
   };
-  console.log(notApprovedComments(comments));
 
-  const handlePageChange = (page: number) => {
-    console.log(page);
+  const handlePageChange = () => {
+    console.log("page");
   };
 
   return (
     <div className="view">
       <div className="pending view-wrap">
         <BlueTitle title="Pending comments" />
-        {notApprovedComments(comments).map((comment: CommentModel) => (
-          <PendingComment key={comment.id} comment={comment} />
-        ))}
-        <Paginate
+        {comments.length > 0 ? (
+          notApprovedComments(comments).map((comment: CommentModel) => (
+            <PendingComment key={comment.id} comment={comment} />
+          ))
+        ) : (
+          <Loader />
+        )}
+        {/* <Paginate
           itemsCount={notApprovedComments(comments).length}
           pageSize={5}
           currentPage={page}
           onPageChange={handlePageChange}
-        />
+        /> */}
       </div>
     </div>
   );

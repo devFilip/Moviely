@@ -14,9 +14,10 @@ import AddToWatchList from "../../UI/molecules/MovieAddWatch/AddToWatchList";
 import { v4 } from "uuid";
 import { addComment } from "../../../redux/redux/toolkit/commentsSlice";
 import MovieAlertModal from "../../UI/molecules/MovieAlertModal/MovieAlertModal";
+import Loader from "../Loader/Loader";
 
 const DescriptionPage = () => {
-  const [commentContent, setCommentContent] = useState("");
+  const [commentContent, setCommentContent] = useState<string>("");
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const DescriptionPage = () => {
   const { id } = useParams();
   useEffect(() => {
     dispatch(getMovie(id));
-  }, [id]);
+  }, [id, dispatch]);
   let role = "admin";
   const movie = useSelector((state: RootState) => state.movies.movie);
 
@@ -44,6 +45,7 @@ const DescriptionPage = () => {
     };
     dispatch(setMovieComment({ movie, comment }));
     dispatch(addComment(comment));
+    setCommentContent("");
   };
   const handleModal = () => {
     setShowModal(!showModal);
@@ -72,6 +74,7 @@ const DescriptionPage = () => {
       </div>
     );
   };
+  if (Object.keys(movie).length === 0) return <Loader />;
   return jsx(movie as Movie);
 };
 

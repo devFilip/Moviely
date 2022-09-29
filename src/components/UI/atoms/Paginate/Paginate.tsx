@@ -5,7 +5,7 @@ interface Paginate {
   currentPage: number;
   itemsCount: number;
   pageSize: number;
-  onPageChange: (e: MouseEvent<HTMLLIElement, MouseEvent>) => void;
+  onPageChange: () => void;
 }
 // sifra na telefonu je 1808
 const Paginate: React.FC<Paginate> = ({
@@ -28,7 +28,7 @@ const Paginate: React.FC<Paginate> = ({
       {pages.map((page) => (
         <li
           className={`paginate__item ${active(page, currentPage)}`}
-          onClick={(page) => onPageChange(page)}
+          onClick={() => onPageChange()}
         >
           {page}
         </li>

@@ -3,4 +3,5 @@ import CommentService from "../../../services/CommentService";
 
 export const requestAddComment = (comment: CommentModel) =>
   CommentService.addComment(comment);
-export const requestGetComments = () => CommentService.getComments();
+export const requestGetComments = (offset: number) =>
+  CommentService.getComments(offset);

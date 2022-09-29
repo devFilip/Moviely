@@ -10,6 +10,8 @@ import FilterForm from "../../UI/organisms/FilterForm/FilterForm";
 import List from "../../UI/molecules/MovieList/List";
 import "./HomePage.css";
 import MovieAlertModal from "../../UI/molecules/MovieAlertModal/MovieAlertModal";
+import Loader from "../Loader/Loader";
+import { Movie } from "../../../models/MovieModel";
 
 interface HomePage {
   role: string;
@@ -21,7 +23,7 @@ const HomePage: React.FC<HomePage> = ({ role }) => {
   const movies = useSelector((state: RootState) => state.movies.movies);
   useEffect(() => {
     dispatch(getMovies());
-  }, []);
+  }, [dispatch]);
   const handleFilter = (obj: InputModel) => {
     const filterObj: InputModel = {
       ...obj,
@@ -39,7 +41,11 @@ const HomePage: React.FC<HomePage> = ({ role }) => {
   return (
     <div className="view">
       <FilterForm role={role} onFilter={handleFilter} />
-      <List items={movies} modal={showModal} onModal={handleModal} />
+      {movies.length > 0 ? (
+        <List items={movies} modal={showModal} onModal={handleModal} />
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };

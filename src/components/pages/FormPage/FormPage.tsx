@@ -51,7 +51,7 @@ const FormPage = () => {
       const formObj = getFormObj(movie as Movie);
       setForm(formObj as any);
     }
-  }, [id]);
+  }, [id, dispatch]);
   const schema: any = {
     title: Joi.string().required().label("Title"),
     genre: Joi.string().required().label("Genre"),

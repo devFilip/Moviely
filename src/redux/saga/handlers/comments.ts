@@ -12,9 +12,10 @@ export function* handleAddComment(action: Action) {
     console.log(error);
   }
 }
-export function* handleGetComments() {
+export function* handleGetComments(action: Action) {
+  const { payload } = action;
   try {
-    const response: AxiosResponse = yield call(requestGetComments);
+    const response: AxiosResponse = yield call(requestGetComments, payload);
     yield put(setComments([...response?.data]));
   } catch (error) {
     console.log(error);
