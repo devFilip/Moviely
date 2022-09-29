@@ -12,7 +12,7 @@ const Button: React.FC<Button> = ({ text, style, onClick }) => {
     if (onClick) onClick();
   };
   return (
-    <button className="button" style={style} onClick={() => handleClick()}>
+    <button className="button" style={style} onClick={handleClick}>
       <p>{text}</p>
     </button>
   );

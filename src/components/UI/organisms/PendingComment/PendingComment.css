@@ -6,11 +6,12 @@
   align-items: center;
   width: 100%;
   padding: 2rem;
-  overflow-y: scroll;
+  margin-bottom: 2rem;
 }
 .pending-comment__icons {
   border-right: var(--border-color-primary);
   padding-right: 1rem;
+  font-size: 2rem;
   width: 30%;
 }
 .pending-comment__content {
@@ -27,4 +28,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+}
+@media screen and (max-width: 1300px) {
+  .pending-comment__icons {
+    font-size: 1.5rem;
+  }
+}
+@media screen and (max-width: 1125px) {
+  .pending-comment__icons {
+    font-size: 1rem;
+  }
 }

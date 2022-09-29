@@ -13,12 +13,6 @@ const List: React.FC<List> = ({ items, modal, onModal }) => {
   if (items.length === 0) return <span>There are no movies database.</span>;
   return (
     <div className="list view-wrap" style={{ paddingTop: "4.5rem" }}>
-      {modal && (
-        <MovieAlertModal
-          onDelete={() => console.log("delete")}
-          onModal={onModal}
-        />
-      )}
       {items.map((item) => (
         <>
           <Card key={item.id} item={item} modal={modal} onModal={onModal} />

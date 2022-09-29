@@ -24,7 +24,7 @@ const DescriptionPage = () => {
   const { id } = useParams();
   useEffect(() => {
     dispatch(getMovie(id));
-  }, []);
+  }, [id]);
   let role = "admin";
   const movie = useSelector((state: RootState) => state.movies.movie);
 

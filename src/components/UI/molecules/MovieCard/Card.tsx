@@ -10,11 +10,22 @@ interface Card {
   item: Movie;
   modal: boolean;
   onModal: () => void;
+  onDelete?: (id: string) => void;
 }
 
-const Card: React.FC<Card> = ({ item, modal, onModal }) => {
+const Card: React.FC<Card> = ({ item, modal, onModal, onDelete }) => {
+  const handleDelete = () => {
+    onModal();
+    if (onDelete) onDelete(item.id);
+  };
   return (
     <>
+      {modal && (
+        <MovieAlertModal
+          onDelete={() => console.log("delete")}
+          onModal={onModal}
+        />
+      )}
       <div className="card">
         <Link to={`/movie/${item.id}`} className="card__poster">
           <img className="card__img" src={item.imageUrl} alt="movie image" />

@@ -26,13 +26,11 @@ const PendingComment: React.FC<PendingComment> = ({ comment }) => {
           iconSrc="/images/user-2.png"
           label={username(comment)}
           iconStyle={styles.iconUser}
-          labelStyle={styles.label}
         />
         <Icon
           iconSrc="/images/video.png"
           label={"movie"}
           iconStyle={styles.iconMovie}
-          labelStyle={styles.label}
         />
       </div>
       <div className="pending-comment__content">
@@ -50,13 +48,13 @@ const styles = {
   approve: {
     background: "rgba(37, 150, 190, 0.5)",
     color: "white",
-    width: "70%",
+    width: "60%",
     padding: "1rem",
   },
   deny: {
     background: "rgba(244, 36, 36, 0.5)",
     color: "white",
-    width: "70%",
+    width: "60%",
     padding: "1rem",
   },
   iconUser: {
@@ -69,9 +67,6 @@ const styles = {
   iconComment: {
     transform: `translateY(${-20}px)`,
     opacity: "50%",
-  },
-  label: {
-    fontSize: "2rem",
   },
 };
 
