@@ -37,19 +37,25 @@ const FilterForm: React.FC<FilterForm> = ({ role, onFilter }) => {
   return (
     <form className="filter-form" onSubmit={(e) => handleSubmit(e)}>
       <div className="filter-form__top">
-        <Input
-          placeholder="Title"
-          value={input.title}
-          name="title"
-          onChange={handleChange}
-        />
-        <DropDownList name="genre" onChange={handleChange} />
-        <Input
-          placeholder="Year"
-          value={input.year}
-          name="year"
-          onChange={handleChange}
-        />
+        <div className="filter-form__width">
+          <Input
+            placeholder="Title"
+            value={input.title}
+            name="title"
+            onChange={handleChange}
+          />
+        </div>
+        <div className="filter-form__width">
+          <DropDownList name="genre" onChange={handleChange} />
+        </div>
+        <div className="filter-form__width">
+          <Input
+            placeholder="Year"
+            value={input.year}
+            name="year"
+            onChange={handleChange}
+          />
+        </div>
       </div>
       <div className="filter-form__bottom">
         <Slider value={input.grade} name="grade" onChange={handleChange} />

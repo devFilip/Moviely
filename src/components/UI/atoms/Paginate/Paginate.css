@@ -1,0 +1,28 @@
+.paginate {
+  display: flex;
+  font-size: 1.5rem;
+  color: black;
+  width: 100%;
+}
+.paginate__item {
+  list-style: none;
+  margin: 1px;
+  border: 1px solid var(--blue-color-primary);
+  padding: 1rem;
+  cursor: pointer;
+}
+.paginate__item:not(.active__page):hover {
+  background-color: lightgray;
+  transition: 0.5s;
+}
+.active__page {
+  background: var(--blue-color-primary);
+}
+.paginate .paginate__item:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.paginate .paginate__item:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}

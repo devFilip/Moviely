@@ -1,13 +1,20 @@
 .input {
   border-radius: var(--border-radius);
   border: 1px solid var(--blue-color-primary);
-  color: rgba(0, 0, 0, 0.53);
   font-size: 2rem;
   height: 6.5rem;
   letter-spacing: 0.1rem;
   outline: none;
   padding: 1rem;
-  width: 31.8%;
+  width: 100%;
+}
+.input__error {
+  color: red;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.input::placeholder {
+  color: rgba(0, 0, 0, 0.53);
 }
 @media screen and (max-width: 1250px) {
   .input {

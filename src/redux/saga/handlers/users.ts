@@ -1,8 +1,8 @@
+import { requestGetUser, requestGetUsers } from "../requests/users";
+import { setUser, setUsers } from "../../redux/toolkit/userSlice";
 import { AxiosResponse } from "axios";
 import { call, put } from "redux-saga/effects";
 import { Action } from "../../redux/toolkit/configureStore";
-import { setUser, setUsers } from "../../redux/toolkit/userSlice";
-import { requestGetUser, requestGetUsers } from "../requests/users";
 
 export function* handleGetUsers() {
   try {

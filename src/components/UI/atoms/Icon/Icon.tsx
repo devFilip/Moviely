@@ -13,7 +13,7 @@ const Icon: React.FC<Icon> = ({ iconSrc, label, iconStyle, labelStyle }) => {
     <div className="icon">
       <img
         className="icon__img icon--margin__right"
-        style={iconStyle}
+        style={{ ...iconStyle, cursor: "pointer" }}
         src={iconSrc}
         alt="icon"
       />

@@ -9,20 +9,41 @@ import movieReducer from "../toolkit/moviesSlice";
 import userReducer from "../toolkit/userSlice";
 import commentReducer from "../toolkit/commentsSlice";
 import ratingReducer from "../toolkit/ratingsSlice";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 const sagaMiddleware = createSagaMiddleware();
 
-const reducer = combineReducers({
-  users: userReducer,
-  movies: movieReducer,
+// const config = {
+//   key: "main-root",
+//   storage,
+//   whitelist: ["users"],
+// };
+const usersConfig = {
+  key: "user",
+  storage,
+  blacklist: ["users"],
+};
+const moviesConfig = {
+  key: "movie",
+  storage,
+  blacklist: ["movies"],
+};
+
+const reducer = {
+  users: persistReducer(usersConfig, userReducer),
+  movies: persistReducer(moviesConfig, movieReducer),
   comments: commentReducer,
   ratings: ratingReducer,
-});
+};
+// const persistedReducer = persistReducer(config, reducer);
 
 const store = configureStore({
   reducer,
-  middleware: [...getDefaultMiddleware({ thunk: false }), sagaMiddleware],
+  middleware: [sagaMiddleware]
 });
+
+export const persistor = persistStore(store);
 
 sagaMiddleware.run(watcherSaga);
 
@@ -31,4 +52,5 @@ export interface Action {
   type: string;
   payload: any;
 }
+
 export default store;

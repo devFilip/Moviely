@@ -6,7 +6,7 @@
   height: 6.5rem;
   outline: none;
   padding: 1rem;
-  width: 31.8%;
+  width: 100%;
 }
 
 .drop-list__select {
@@ -19,6 +19,11 @@
   outline: none;
   text-decoration: none;
   width: 100%;
+}
+.drop-list__error {
+  color: red;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 @media screen and (max-width: 1250px) {
   .drop-list__select {

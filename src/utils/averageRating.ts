@@ -6,7 +6,7 @@ const calcAverageRating = (ratings: Array<RatingModel>) =>
   +(_.sumBy(ratings, (rating) => rating.grade) / ratings.length).toFixed(2);
 
 export const displayRating = (movie: Movie) => {
-  return Object.keys(movie).length !== 0
+  return movie.ratings && movie.ratings.length !== 0
     ? calcAverageRating(movie?.ratings)
-    : 5;
+    : 0;
 };

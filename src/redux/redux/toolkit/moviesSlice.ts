@@ -36,6 +36,21 @@ const movieSlice = createSlice({
         movie: { ...movie, ratings: [...movie.ratings, rating] },
       };
     },
+    postMovie: (state, action: Action): any => {
+      const { movie } = action.payload;
+      return { ...state, movies: [...state.movies, movie] };
+    },
+    updateMovie: (state, action: Action): any => {
+      const { movie } = action.payload;
+      return { ...state, movie: { ...movie } };
+    },
+    deleteMovie: (state, action: Action) => {
+      const { id } = action.payload;
+      return {
+        ...state,
+        movies: state.movies.filter((movie: Movie) => movie.id !== id),
+      };
+    },
   },
 });
 
@@ -48,6 +63,9 @@ export const {
   setMovie,
   setMovieComment,
   setMovieRating,
+  postMovie,
+  updateMovie,
+  deleteMovie,
 } = movieSlice.actions;
 
 export default movieSlice.reducer;

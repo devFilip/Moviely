@@ -1,9 +1,12 @@
 import {
   requestCommentMovie,
+  requestDeleteMovie,
   requestGetFilteredMovies,
   requestGetMovie,
   requestGetMovies,
+  requestPostMovie,
   requestRateMovie,
+  requestUpdateMovie,
 } from "../requests/movies";
 import {
   setFilteredMovies,
@@ -63,6 +66,29 @@ export function* handleRateMovie(action: Action) {
   const { movie, rating } = action.payload;
   try {
     yield call(requestRateMovie, movie, rating);
+  } catch (error) {
+    console.log(error);
+  }
+}
+export function* handlePostMovie(action: Action) {
+  const { payload } = action;
+
+  try {
+    yield call(requestPostMovie, payload);
+  } catch (error) {
+    console.log(error);
+  }
+}
+export function* handleUpdateMovie(action: Action) {
+  try {
+    yield call(requestUpdateMovie, action.payload);
+  } catch (error) {
+    console.log(error);
+  }
+}
+export function* handleDeleteMovie(action: Action) {
+  try {
+    yield call(requestDeleteMovie, action.payload);
   } catch (error) {
     console.log(error);
   }

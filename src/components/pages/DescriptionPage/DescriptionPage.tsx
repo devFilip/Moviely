@@ -1,27 +1,30 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { TextareaHTMLAttributes, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Movie } from "../../../models/MovieModel";
 import { RootState } from "../../../redux/redux/toolkit/configureStore";
 import {
+  deleteMovie,
   getMovie,
   setMovieComment,
 } from "../../../redux/redux/toolkit/moviesSlice";
 import MovieDetails from "../../UI/organisms/MovieDetails/MovieDetails";
 import MovieComments from "../../UI/organisms/MovieComments/MovieComments";
-import { getUsers } from "../../../redux/redux/toolkit/userSlice";
-import Button from "../../UI/atoms/Button/Button";
 import AddToWatchList from "../../UI/molecules/MovieAddWatch/AddToWatchList";
 import { v4 } from "uuid";
 import { addComment } from "../../../redux/redux/toolkit/commentsSlice";
+import MovieAlertModal from "../../UI/molecules/MovieAlertModal/MovieAlertModal";
 
 const DescriptionPage = () => {
   const [commentContent, setCommentContent] = useState("");
+  const [showModal, setShowModal] = useState<boolean>(false);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
   useEffect(() => {
     dispatch(getMovie(id));
-  }, []);
+  }, [id]);
   let role = "admin";
   const movie = useSelector((state: RootState) => state.movies.movie);
 
@@ -42,12 +45,22 @@ const DescriptionPage = () => {
     dispatch(setMovieComment({ movie, comment }));
     dispatch(addComment(comment));
   };
+  const handleModal = () => {
+    setShowModal(!showModal);
+  };
+  const handleDelete = () => {
+    dispatch(deleteMovie(id));
+    setTimeout(() => navigate("/"), 100);
+  };
 
   const jsx = (movie: Movie) => {
     return (
       <div className="view">
-        <div className="view-wrap">
-          <MovieDetails movie={movie} role={role} />
+        <div className="view-wrap" style={{ paddingTop: "4.5rem" }}>
+          <MovieDetails movie={movie} role={role} onModal={handleModal} />
+          {showModal && (
+            <MovieAlertModal onDelete={handleDelete} onModal={handleModal} />
+          )}
           {role !== "admin" ? <AddToWatchList /> : ""}
           <MovieComments
             role={role}

@@ -6,16 +6,17 @@ import {
   getMovies,
 } from "../../../redux/redux/toolkit/moviesSlice";
 import { RootState } from "../../../redux/redux/toolkit/configureStore";
-
 import FilterForm from "../../UI/organisms/FilterForm/FilterForm";
 import List from "../../UI/molecules/MovieList/List";
 import "./HomePage.css";
+import MovieAlertModal from "../../UI/molecules/MovieAlertModal/MovieAlertModal";
 
 interface HomePage {
   role: string;
 }
 
 const HomePage: React.FC<HomePage> = ({ role }) => {
+  const [showModal, setShowModal] = useState<boolean>(false);
   const dispatch = useDispatch();
   const movies = useSelector((state: RootState) => state.movies.movies);
   useEffect(() => {
@@ -28,11 +29,17 @@ const HomePage: React.FC<HomePage> = ({ role }) => {
     };
     dispatch(getFilteredMovies(filterObj));
   };
+  const handleModal = () => {
+    setShowModal(!showModal);
+  };
+  const handleDelete = () => {
+    console.log("delete");
+  };
 
   return (
     <div className="view">
       <FilterForm role={role} onFilter={handleFilter} />
-      <List items={movies} />
+      <List items={movies} modal={showModal} onModal={handleModal} />
     </div>
   );
 };

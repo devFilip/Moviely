@@ -17,3 +17,10 @@ export const requestCommentMovie = (movie: Movie, comment: CommentModel) =>
 
 export const requestRateMovie = (movie: Movie, rating: RatingModel) =>
   MovieService.rateMovie(movie, rating);
+
+export const requestPostMovie = (movie: Movie) => MovieService.postMovie(movie);
+
+export const requestUpdateMovie = (movie: Movie) =>
+  MovieService.updateMovie(movie);
+
+export const requestDeleteMovie = (id: string) => MovieService.deleteMovie(id);

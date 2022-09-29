@@ -4,8 +4,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import configureStore from "./redux/redux/toolkit/configureStore";
+import configureStore, {
+  persistor,
+} from "./redux/redux/toolkit/configureStore";
 import "./index.css";
+import { PersistGate } from "redux-persist/integration/react";
+import Loader from "./components/pages/Loader/Loader";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -13,9 +17,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={configureStore}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <PersistGate loading={<Loader />} persistor={persistor}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

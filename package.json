@@ -13,6 +13,8 @@
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "axios": "^0.27.2",
+    "bootstrap": "^5.2.1",
+    "joi-browser": "^13.4.0",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -20,10 +22,13 @@
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "redux-persist": "^6.0.0",
     "redux-saga": "^1.2.1",
+    "types-joi": "^2.1.0",
     "typescript": "^4.7.4",
     "uuid": "^8.3.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -50,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "@types/joi": "^17.2.3",
     "@types/lodash": "^4.14.184",
     "@types/uuid": "^8.3.4"
   }

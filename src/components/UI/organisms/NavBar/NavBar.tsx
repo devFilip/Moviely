@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./NavBar.css";
 
 interface NavBar {
@@ -22,8 +22,12 @@ const NavBar: React.FC<NavBar> = ({ role }) => {
             <p className="nav__item">List of my watched movies</p>
           ) : (
             <>
-              <p className="nav__item">Add new movie</p>
-              <p className="nav__item">Pending comments</p>
+              <NavLink to="/movieForm/new" className="nav__item">
+                Add new movie
+              </NavLink>
+              <NavLink to="/pendingComments" className="nav__item">
+                Pending comments
+              </NavLink>
               <p className="nav__item">Pending Users</p>
             </>
           )}

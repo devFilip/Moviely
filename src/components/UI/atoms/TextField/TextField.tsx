@@ -2,18 +2,27 @@ import "./TextField.css";
 interface TextField {
   borderColor?: string;
   name?: string;
+  placeholder: string;
+  background?: string;
+  value?: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
-const TextField: React.FC<TextField> = ({ name, borderColor, onChange }) => {
+const TextField: React.FC<TextField> = ({
+  borderColor,
+  background,
+  onChange,
+  value,
+  ...rest
+}) => {
   return (
     <textarea
       className="textField"
-      placeholder="Leave you comment"
-      name={name}
-      onChange={(e) => onChange(e)}
+      {...rest}
+      value={value}
       cols={30}
       rows={5}
-      style={{ borderColor }}
+      onChange={(e) => onChange(e)}
+      style={{ borderColor, background }}
     ></textarea>
   );
 };

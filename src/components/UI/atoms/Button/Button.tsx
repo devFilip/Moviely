@@ -1,34 +1,18 @@
 import "./Button.css";
+import { CSSProperties } from "react";
 
 interface Button {
   text: string;
-  color: string;
-  size: string;
-  textColor: string;
-  padding?: string;
-  fontSize?: string;
+  style: CSSProperties;
+  onClick?: () => void;
 }
 
-const Button: React.FC<Button> = ({
-  text,
-  color,
-  size,
-  padding,
-  fontSize,
-  textColor,
-}) => {
+const Button: React.FC<Button> = ({ text, style, onClick }) => {
+  const handleClick = () => {
+    if (onClick) onClick();
+  };
   return (
-    <button
-      className="button"
-      style={{
-        color: textColor,
-        background: color,
-        fontSize,
-        width: size,
-        padding: padding ? padding : "0.2rem",
-        height: "100%",
-      }}
-    >
+    <button className="button" style={style} onClick={handleClick}>
       <p>{text}</p>
     </button>
   );

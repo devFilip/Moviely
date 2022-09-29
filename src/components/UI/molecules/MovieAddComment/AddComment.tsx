@@ -15,18 +15,25 @@ const AddComment: React.FC<AddComment> = ({ onChange, onComment }) => {
         <span>my-username</span>
       </div>
       <form className="addComment__content" onSubmit={(e) => onComment(e)}>
-        <TextField name="" onChange={(e) => onChange(e)} />
-        <Button
-          fontSize="2rem"
-          text="Submit"
-          textColor="white"
-          size="15%"
-          color="#2596BE"
-          padding="3rem"
-        />
+        <div className="addComment__content__field">
+          <TextField
+            placeholder="Leave your comment"
+            onChange={(e) => onChange(e)}
+          />
+        </div>
+        <Button style={styles.submit} text="Submit" />
       </form>
     </div>
   );
+};
+const styles = {
+  submit: {
+    fontSize: "2rem",
+    color: "white",
+    width: "15%",
+    background: "#2596BE",
+    padding: "3rem",
+  },
 };
 
 export default AddComment;
