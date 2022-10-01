@@ -14,9 +14,7 @@ const List: React.FC<List> = ({ items, modal, onModal }) => {
   return (
     <div className="list view-wrap" style={{ paddingTop: "4.5rem" }}>
       {items.map((item) => (
-        <>
-          <Card key={item.id} item={item} modal={modal} onModal={onModal} />
-        </>
+        <Card key={item.id} item={item} modal={modal} onModal={onModal} />
       ))}
     </div>
   );

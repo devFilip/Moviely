@@ -8,8 +8,7 @@ class CommentService {
   }
   addComment = (comment: CommentModel) =>
     this.client?.post(`/comments`, comment);
-  getComments = (offset: number) =>
-    this.client?.get(`/comments?_limit=6&_offset=${offset}`);
+  getComments = () => this.client?.get(`/comments`);
 }
 
 export default new CommentService();

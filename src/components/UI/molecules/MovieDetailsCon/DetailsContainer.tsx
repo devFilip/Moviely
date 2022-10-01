@@ -23,6 +23,7 @@ const Details: React.FC<Details> = ({ movie }) => {
   ) => {
     return (
       <Icon
+        key={imgPath}
         label={typeof path === "string" ? movie[path] : path}
         iconSrc={imgPath}
         iconStyle={styles.iconStyle}

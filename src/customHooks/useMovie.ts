@@ -1,15 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHref } from "react-router-dom";
 import { RootState } from "../redux/redux/toolkit/configureStore";
 import { getMovie } from "../redux/redux/toolkit/moviesSlice";
 
-export const useMovie = (id: string | undefined) => {
+export const useMovie = (id: string) => {
+  // if (!id) return null;
+  const runOnce = useRef(false);
   const dispatch = useDispatch();
-  const [movie, setMovie] = useState({});
   useEffect(() => {
-    dispatch(getMovie(id));
-  });
-  const m = useSelector((state: RootState) => state.movies.movie);
-  setMovie(m);
-  return movie;
+    if (runOnce.current === false) {
+      dispatch(getMovie(id));
+      return () => {
+        runOnce.current = true;
+      };
+    }
+  }, [id]);
+  return useSelector((state: RootState) => state.movies.movie);
 };

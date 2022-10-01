@@ -8,7 +8,7 @@ const commentsSlice = createSlice({
       const { payload } = action;
       return [...state, payload];
     },
-    getComments: (state, action) => {},
+    getComments: () => {},
     setComments: (state, action): any => {
       return [...state, ...action.payload];
     },

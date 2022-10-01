@@ -15,6 +15,7 @@ import { v4 } from "uuid";
 import { addComment } from "../../../redux/redux/toolkit/commentsSlice";
 import MovieAlertModal from "../../UI/molecules/MovieAlertModal/MovieAlertModal";
 import Loader from "../Loader/Loader";
+import { useMovie } from "../../../customHooks/useMovie";
 
 const DescriptionPage = () => {
   const [commentContent, setCommentContent] = useState<string>("");
@@ -23,12 +24,8 @@ const DescriptionPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
-  useEffect(() => {
-    dispatch(getMovie(id));
-  }, [id, dispatch]);
+  const movie = useMovie(id as string);
   let role = "admin";
-  const movie = useSelector((state: RootState) => state.movies.movie);
-
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentContent(e.target.value);
   };
@@ -43,9 +40,9 @@ const DescriptionPage = () => {
       content: commentContent,
       approved: false,
     };
+    setCommentContent("");
     dispatch(setMovieComment({ movie, comment }));
     dispatch(addComment(comment));
-    setCommentContent("");
   };
   const handleModal = () => {
     setShowModal(!showModal);
@@ -55,26 +52,30 @@ const DescriptionPage = () => {
     setTimeout(() => navigate("/"), 100);
   };
 
-  const jsx = (movie: Movie) => {
+  const jsx = (movie: Movie) => (
+    <div className="view">
+      <div className="view-wrap" style={{ paddingTop: "4.5rem" }}>
+        <MovieDetails movie={movie} role={role} onModal={handleModal} />
+        {showModal && (
+          <MovieAlertModal onDelete={handleDelete} onModal={handleModal} />
+        )}
+        {role !== "admin" ? <AddToWatchList /> : ""}
+        <MovieComments
+          role={role}
+          comments={movie.comments}
+          onComment={handleComment}
+          onChange={handleChange}
+        />
+      </div>
+    </div>
+  );
+
+  if (Object.keys(movie).length === 0)
     return (
       <div className="view">
-        <div className="view-wrap" style={{ paddingTop: "4.5rem" }}>
-          <MovieDetails movie={movie} role={role} onModal={handleModal} />
-          {showModal && (
-            <MovieAlertModal onDelete={handleDelete} onModal={handleModal} />
-          )}
-          {role !== "admin" ? <AddToWatchList /> : ""}
-          <MovieComments
-            role={role}
-            comments={movie.comments}
-            onComment={handleComment}
-            onChange={handleChange}
-          />
-        </div>
+        <Loader />
       </div>
     );
-  };
-  if (Object.keys(movie).length === 0) return <Loader />;
   return jsx(movie as Movie);
 };
 

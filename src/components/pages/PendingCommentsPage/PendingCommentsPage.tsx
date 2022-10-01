@@ -12,28 +12,15 @@ import { Movie } from "../../../models/MovieModel";
 import { notApprovedComments } from "../../../utils/commentsHelper";
 import Loader from "../Loader/Loader";
 const PendingCommentsPage = () => {
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState(1);
   const dispatch = useDispatch();
-  let offset = 0;
-  const loadComments = (offset: number) => dispatch(getComments(offset));
-
   useEffect(() => {
-    dispatch(getComments(0));
-    window.addEventListener("scroll", (e: Event) => console.log(e), {
-      once: true,
-    });
+    dispatch(getComments());
   }, []);
 
   const comments: Array<CommentModel> = useSelector(
     (state: RootState) => state.comments
   );
-  const handleScroll = (e: React.ChangeEvent<Document>) => {
-    const { scrollTop, scrollHeight } = e.target.documentElement;
-    if (window.innerHeight + scrollTop >= scrollHeight) {
-      offset += 6;
-      loadComments(offset);
-    }
-  };
 
   const handlePageChange = () => {
     console.log("page");
@@ -50,12 +37,12 @@ const PendingCommentsPage = () => {
         ) : (
           <Loader />
         )}
-        {/* <Paginate
+        <Paginate
           itemsCount={notApprovedComments(comments).length}
           pageSize={5}
           currentPage={page}
           onPageChange={handlePageChange}
-        /> */}
+        />
       </div>
     </div>
   );

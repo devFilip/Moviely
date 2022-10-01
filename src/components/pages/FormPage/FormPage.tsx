@@ -16,6 +16,7 @@ import { RootState } from "../../../redux/redux/toolkit/configureStore";
 import { Movie } from "../../../models/MovieModel";
 import { getFormObj } from "../../../utils/getFormData";
 import { v4 } from "uuid";
+import Loader from "../Loader/Loader";
 const Joi = require("joi-browser");
 
 interface formInput {
@@ -42,14 +43,15 @@ const FormPage = () => {
   });
   const [formErrors, setFormErrors] = useState<any>({});
   const { id } = useParams();
+  const defaultId = "new";
   const navigate = useNavigate();
   const movie = useSelector((state: RootState) => state.movies.movie);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (id !== "new") {
+    if (id !== defaultId) {
       dispatch(getMovie(id));
       const formObj = getFormObj(movie as Movie);
-      setForm(formObj as any);
+      setForm(formObj as formInput);
     }
   }, [id, dispatch]);
   const schema: any = {
@@ -65,7 +67,6 @@ const FormPage = () => {
       year: form.year,
       imageUrl: form.imageUrl,
     };
-    console.log(validationFields);
 
     const config = {
       abortEarly: false,
@@ -121,8 +122,8 @@ const FormPage = () => {
       return;
     }
 
-    if (id === "new") {
-      const movie: any = {
+    if (id === defaultId) {
+      const movie: Movie | formInput = {
         ...form,
         id: v4(),
         comments: [],
@@ -148,75 +149,79 @@ const FormPage = () => {
   };
   return (
     <div className="view">
-      <form className="view-wrap form-wrap" onSubmit={(e) => handleSubmit(e)}>
-        <div className="--special">
-          <BlueTitle title={id === "new" ? "New Movie" : "Edit Movie"} />
-        </div>
-        <div className="form">
-          <Input
-            placeholder="Title"
-            value={form.title}
-            name="title"
-            error={formErrors.title}
-            onChange={(e) => handleChange(e)}
-          />
-          <DropDownList
-            value={form.genre}
-            name="genre"
-            error={formErrors.genre}
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
-        <div className="form">
-          <Input
-            placeholder="Year"
-            value={form.year}
-            name="year"
-            error={formErrors.year}
-            onChange={(e) => handleChange(e)}
-          />
-          <Input
-            placeholder="Runtime"
-            value={form.runtime}
-            name="runtime"
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
-        <div className="form">
-          <Input
-            placeholder="Image Url"
-            value={form.imageUrl}
-            name="imageUrl"
-            error={formErrors.imageUrl}
-            onChange={(e) => handleChange(e)}
-          />
-          <Input
-            placeholder="Country"
-            value={form.country}
-            name="country"
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
-        <div className="--special">
-          <Input
-            placeholder="Trailer Url"
-            value={form.movieTrailer}
-            name="movieTrailer"
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
-        <div className="--special">
-          <TextField
-            borderColor="#2596BE"
-            placeholder="Description"
-            name="description"
-            value={form.description}
-            background="white"
-            onChange={(e) => handleChange(e)}
-          />
-        </div>
-        <Button style={styles.submit} text="Submit" />
-      </form>
+      {id === defaultId || Object.keys(movie).length !== 0 ? (
+        <form className="view-wrap form-wrap" onSubmit={(e) => handleSubmit(e)}>
+          <div className="--special">
+            <BlueTitle title={id === defaultId ? "New Movie" : "Edit Movie"} />
+          </div>
+          <div className="form">
+            <Input
+              placeholder="Title"
+              value={form.title}
+              name="title"
+              error={formErrors.title}
+              onChange={(e) => handleChange(e)}
+            />
+            <DropDownList
+              value={form.genre}
+              name="genre"
+              error={formErrors.genre}
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div className="form">
+            <Input
+              placeholder="Year"
+              value={form.year}
+              name="year"
+              error={formErrors.year}
+              onChange={(e) => handleChange(e)}
+            />
+            <Input
+              placeholder="Runtime"
+              value={form.runtime}
+              name="runtime"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div className="form">
+            <Input
+              placeholder="Image Url"
+              value={form.imageUrl}
+              name="imageUrl"
+              error={formErrors.imageUrl}
+              onChange={(e) => handleChange(e)}
+            />
+            <Input
+              placeholder="Country"
+              value={form.country}
+              name="country"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div className="--special">
+            <Input
+              placeholder="Trailer Url"
+              value={form.movieTrailer}
+              name="movieTrailer"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <div className="--special">
+            <TextField
+              borderColor="#2596BE"
+              placeholder="Description"
+              name="description"
+              value={form.description}
+              background="white"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <Button style={styles.submit} text="Submit" />
+        </form>
+      ) : (
+        <Loader />
+      )}
     </div>
   );
 };
