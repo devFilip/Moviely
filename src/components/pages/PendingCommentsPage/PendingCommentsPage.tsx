@@ -1,37 +1,34 @@
-import PendingComment from "../../UI/organisms/PendingComment/PendingComment";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getMovies } from "../../../redux/redux/toolkit/moviesSlice";
-import { getComments } from "../../../redux/redux/toolkit/commentsSlice";
-import { RootState } from "../../../redux/redux/toolkit/configureStore";
 import { CommentModel } from "../../../models/CommentModel";
-import BlueTitle from "../../UI/atoms/BlueTitle/BlueTitle";
-import Paginate from "../../UI/atoms/Paginate/Paginate";
-import "./PendingCommentsPage.css";
-import { Movie } from "../../../models/MovieModel";
 import { notApprovedComments } from "../../../utils/commentsHelper";
+import { useState } from "react";
+import BlueTitle from "../../UI/atoms/BlueTitle/BlueTitle";
 import Loader from "../Loader/Loader";
+import Paginate from "../../UI/atoms/Paginate/Paginate";
+import PendingComment from "../../UI/organisms/PendingComment/PendingComment";
+import useComments from "../../../customHooks/useComments";
+import "./PendingCommentsPage.css";
+import { paginate } from "../../../utils/paginate";
+
 const PendingCommentsPage = () => {
   const [page, setPage] = useState(1);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getComments());
-  }, []);
-
-  const comments: Array<CommentModel> = useSelector(
-    (state: RootState) => state.comments
+  const pageSize = 4;
+  const comments = useComments();
+  const paginatedComments = paginate(
+    page,
+    pageSize,
+    notApprovedComments(comments)
   );
 
-  const handlePageChange = () => {
-    console.log("page");
+  const handlePageChange = (page: number) => {
+    setPage(page);
   };
 
   return (
     <div className="view">
       <div className="pending view-wrap">
         <BlueTitle title="Pending comments" />
-        {comments.length > 0 ? (
-          notApprovedComments(comments).map((comment: CommentModel) => (
+        {paginatedComments.length > 0 ? (
+          paginatedComments.map((comment: CommentModel) => (
             <PendingComment key={comment.id} comment={comment} />
           ))
         ) : (
@@ -39,7 +36,7 @@ const PendingCommentsPage = () => {
         )}
         <Paginate
           itemsCount={notApprovedComments(comments).length}
-          pageSize={5}
+          pageSize={pageSize}
           currentPage={page}
           onPageChange={handlePageChange}
         />

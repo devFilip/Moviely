@@ -1,28 +1,23 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useRef } from "react";
 import { getComments } from "../redux/redux/toolkit/commentsSlice";
-import { useState, useEffect } from "react";
+import { RootState } from "../redux/redux/toolkit/configureStore";
 
-const dispatch = useDispatch();
-
-const useComments = (page: number = 1) => {
-  const [hasNextPage, setHasNextPage] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
-  const [results, setResults] = useState<any>([]);
-  const [error, setError] = useState<any>({});
+const useComments = () => {
+  const dispatch = useDispatch();
+  const runOnce = useRef(false);
 
   useEffect(() => {
-    setIsLoading(true);
-    setIsError(false);
-    setError({});
+    if (runOnce.current === false) {
+      dispatch(getComments());
 
-    const controller = new AbortController();
-    const { signal } = controller;
+      return () => {
+        runOnce.current = true;
+      };
+    }
+  }, [dispatch]);
 
-    return () => controller.abort();
-  }, [page]);
-
-  return { hasNextPage, isError, isLoading, results, error };
+  return useSelector((state: RootState) => state.comments);
 };
 
 export default useComments;

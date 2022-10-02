@@ -26,3 +26,8 @@
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
+.btn {
+  background: transparent;
+  cursor: pointer;
+  font-family: "Noto Sans";
+}

@@ -5,35 +5,47 @@ interface Paginate {
   currentPage: number;
   itemsCount: number;
   pageSize: number;
-  onPageChange: () => void;
+  onPageChange: (page: number) => void;
 }
-// sifra na telefonu je 1808
 const Paginate: React.FC<Paginate> = ({
   currentPage,
   itemsCount,
   pageSize,
   onPageChange,
 }) => {
-  console.log(itemsCount);
-
-  const pagesCount = Math.floor(itemsCount / pageSize);
+  const pagesCount = Math.ceil(itemsCount / pageSize);
   const pages = _.range(1, pagesCount + 1);
 
-  const active = (page: number, currentPage: number) => {
-    return page === currentPage ? "active__page" : "";
-  };
+  const activeClass = (page: number, currentPage: number) =>
+    page === currentPage ? "active__page" : "";
+
+  if (pagesCount === 1 || pagesCount === 0) return null;
   return (
     <ul className="paginate">
-      <li className="paginate__item">Previous</li>
+      <button
+        className="paginate__item btn"
+        disabled={currentPage === pages[0]}
+        onClick={() => onPageChange(currentPage - 1)}
+      >
+        Previous
+      </button>
       {pages.map((page) => (
         <li
-          className={`paginate__item ${active(page, currentPage)}`}
-          onClick={() => onPageChange()}
+          key={page}
+          className={`paginate__item ${activeClass(page, currentPage)}`}
+          onClick={() => onPageChange(page)}
         >
           {page}
         </li>
       ))}
-      <li className="paginate__item">Next</li>
+
+      <button
+        className="paginate__item btn"
+        disabled={currentPage === pages[pages.length - 1]}
+        onClick={() => onPageChange(currentPage + 1)}
+      >
+        Next
+      </button>
     </ul>
   );
 };

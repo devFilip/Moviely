@@ -12,6 +12,7 @@ import "./HomePage.css";
 import MovieAlertModal from "../../UI/molecules/MovieAlertModal/MovieAlertModal";
 import Loader from "../Loader/Loader";
 import { Movie } from "../../../models/MovieModel";
+import useMovies from "../../../customHooks/useMovies";
 
 interface HomePage {
   role: string;
@@ -20,10 +21,7 @@ interface HomePage {
 const HomePage: React.FC<HomePage> = ({ role }) => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const dispatch = useDispatch();
-  const movies = useSelector((state: RootState) => state.movies.movies);
-  useEffect(() => {
-    dispatch(getMovies());
-  }, [dispatch]);
+  const movies = useMovies();
   const handleFilter = (obj: InputModel) => {
     const filterObj: InputModel = {
       ...obj,
