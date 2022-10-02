@@ -9,11 +9,13 @@ import "./MovieComments.css";
 interface MovieComments {
   comments: Array<CommentModel>;
   role: string;
+  value: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onComment: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 const MovieComments: React.FC<MovieComments> = ({
+  value,
   comments,
   role,
   onChange,
@@ -24,7 +26,7 @@ const MovieComments: React.FC<MovieComments> = ({
       <BlueTitle title="Comments" />
       {role === "user" ? (
         <>
-          <AddComment onComment={onComment} onChange={onChange} />
+          <AddComment value={value} onComment={onComment} onChange={onChange} />
           {comments &&
             comments.map((com) => {
               if (com.approved) return <Comment comment={com} key={com.id} />;

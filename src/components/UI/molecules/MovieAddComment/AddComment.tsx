@@ -3,11 +3,12 @@ import TextField from "../../atoms/TextField/TextField";
 import "./AddComment.css";
 
 interface AddComment {
+  value: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onComment: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const AddComment: React.FC<AddComment> = ({ onChange, onComment }) => {
+const AddComment: React.FC<AddComment> = ({ value, onChange, onComment }) => {
   return (
     <div className="addComment">
       <div className="addComment__user">
@@ -17,6 +18,7 @@ const AddComment: React.FC<AddComment> = ({ onChange, onComment }) => {
       <form className="addComment__content" onSubmit={(e) => onComment(e)}>
         <div className="addComment__content__field">
           <TextField
+            value={value}
             placeholder="Leave your comment"
             onChange={(e) => onChange(e)}
           />

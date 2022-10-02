@@ -27,7 +27,7 @@ const Paginate: React.FC<Paginate> = ({
         disabled={currentPage === pages[0]}
         onClick={() => onPageChange(currentPage - 1)}
       >
-        Previous
+        Prev
       </button>
       {pages.map((page) => (
         <li

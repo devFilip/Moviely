@@ -6,9 +6,15 @@ import "./PendingComment.css";
 
 interface PendingComment {
   comment: CommentModel;
+  onApprove: (obj: any) => void;
+  onDeny: (obj: any) => void;
 }
 
-const PendingComment: React.FC<PendingComment> = ({ comment }) => {
+const PendingComment: React.FC<PendingComment> = ({
+  comment,
+  onApprove,
+  onDeny,
+}) => {
   const movieName = (movie: Movie) => {
     return movie.title;
   };
@@ -38,8 +44,16 @@ const PendingComment: React.FC<PendingComment> = ({ comment }) => {
         <p>{comment.content}</p>
       </div>
       <div className="pending-comment__buttons">
-        <Button text="Approve" style={styles.approve} />
-        <Button text="Deny" style={styles.deny} />
+        <Button
+          text="Approve"
+          style={styles.approve}
+          onAction={() => onApprove(comment)}
+        />
+        <Button
+          text="Deny"
+          style={styles.deny}
+          onAction={() => onDeny(comment.id)}
+        />
       </div>
     </div>
   );

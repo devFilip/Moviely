@@ -6,13 +6,24 @@ import Loader from "../Loader/Loader";
 import Paginate from "../../UI/atoms/Paginate/Paginate";
 import PendingComment from "../../UI/organisms/PendingComment/PendingComment";
 import useComments from "../../../customHooks/useComments";
-import "./PendingCommentsPage.css";
 import { paginate } from "../../../utils/paginate";
+import { useDispatch } from "react-redux";
+import {
+  approveComment,
+  denyComment,
+} from "../../../redux/redux/toolkit/commentsSlice";
+import { updateMovie } from "../../../redux/redux/toolkit/moviesSlice";
+import useMovies from "../../../customHooks/useMovies";
+import { findMovie } from "../../../utils/findMovie";
+import "./PendingCommentsPage.css";
 
 const PendingCommentsPage = () => {
   const [page, setPage] = useState(1);
-  const pageSize = 4;
+  const movies = useMovies();
   const comments = useComments();
+  const dispatch = useDispatch();
+
+  const pageSize = 4;
   const paginatedComments = paginate(
     page,
     pageSize,
@@ -23,13 +34,29 @@ const PendingCommentsPage = () => {
     setPage(page);
   };
 
+  const handleApprove = (obj: any) => {
+    const comment: CommentModel = { ...obj, id: obj.id, approved: true };
+    const [m] = findMovie(movies, obj.movieId);
+    const movie = { ...m, comments: [...m.comments, comment] };
+    dispatch(updateMovie(movie));
+    dispatch(approveComment(comment));
+  };
+  const handleDeny = (id: string) => {
+    dispatch(denyComment(id));
+  };
+
   return (
     <div className="view">
       <div className="pending view-wrap">
         <BlueTitle title="Pending comments" />
         {paginatedComments.length > 0 ? (
           paginatedComments.map((comment: CommentModel) => (
-            <PendingComment key={comment.id} comment={comment} />
+            <PendingComment
+              key={comment.id}
+              comment={comment}
+              onDeny={handleDeny}
+              onApprove={handleApprove}
+            />
           ))
         ) : (
           <Loader />

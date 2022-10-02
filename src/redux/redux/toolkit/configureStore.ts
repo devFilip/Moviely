@@ -14,11 +14,6 @@ import storage from "redux-persist/lib/storage";
 
 const sagaMiddleware = createSagaMiddleware();
 
-// const config = {
-//   key: "main-root",
-//   storage,
-//   whitelist: ["users"],
-// };
 const usersConfig = {
   key: "user",
   storage,
@@ -36,11 +31,10 @@ const reducer = {
   comments: commentReducer,
   ratings: ratingReducer,
 };
-// const persistedReducer = persistReducer(config, reducer);
 
 const store = configureStore({
   reducer,
-  middleware: [sagaMiddleware]
+  middleware: [sagaMiddleware],
 });
 
 export const persistor = persistStore(store);

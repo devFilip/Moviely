@@ -25,7 +25,7 @@ const DescriptionPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const movie = useMovie(id as string);
-  let role = "admin";
+  let role = "user";
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentContent(e.target.value);
   };
@@ -61,6 +61,7 @@ const DescriptionPage = () => {
         )}
         {role !== "admin" ? <AddToWatchList /> : ""}
         <MovieComments
+          value={commentContent}
           role={role}
           comments={movie.comments}
           onComment={handleComment}
