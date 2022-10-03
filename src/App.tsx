@@ -4,6 +4,7 @@ import FormPage from "./components/pages/FormPage/FormPage";
 import HomePage from "./components/pages/HomePage/HomePage";
 import NotFoundPage from "./components/pages/NotFoundPage/NotFoundPage";
 import PendingCommentsPage from "./components/pages/PendingCommentsPage/PendingCommentsPage";
+import PendingUsersPage from "./components/pages/PendingUsersPage/PendingUsersPage";
 import NavBar from "./components/UI/organisms/NavBar/NavBar";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <NavBar role="admin" />
       <Routes>
         <Route path="/movieForm/:id" element={<FormPage />}></Route>
+        <Route path="/pendingUsers" element={<PendingUsersPage />}></Route>
         <Route
           path="/pendingComments"
           element={<PendingCommentsPage />}

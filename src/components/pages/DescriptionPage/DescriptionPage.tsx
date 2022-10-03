@@ -1,11 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
-import React, { TextareaHTMLAttributes, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Movie } from "../../../models/MovieModel";
-import { RootState } from "../../../redux/redux/toolkit/configureStore";
 import {
   deleteMovie,
-  getMovie,
   setMovieComment,
 } from "../../../redux/redux/toolkit/moviesSlice";
 import MovieDetails from "../../UI/organisms/MovieDetails/MovieDetails";

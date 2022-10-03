@@ -28,7 +28,9 @@ const NavBar: React.FC<NavBar> = ({ role }) => {
               <NavLink to="/pendingComments" className="nav__item">
                 Pending comments
               </NavLink>
-              <p className="nav__item">Pending Users</p>
+              <NavLink to="/pendingUsers" className="nav__item">
+                Pending users
+              </NavLink>
             </>
           )}
           <div className="nav__icon">

@@ -1,5 +1,6 @@
 import { CommentModel } from "../../../../models/CommentModel";
 import { Movie } from "../../../../models/MovieModel";
+import { createUsername } from "../../../../utils/createUsername";
 import Button from "../../atoms/Button/Button";
 import Icon from "../../atoms/Icon/Icon";
 import "./PendingComment.css";
@@ -18,19 +19,13 @@ const PendingComment: React.FC<PendingComment> = ({
   const movieName = (movie: Movie) => {
     return movie.title;
   };
-  const username = (comment: CommentModel) => {
-    if (comment && comment.email) {
-      const index = comment.email.indexOf("@");
-      return comment.email.substring(0, index);
-    }
-    return "username";
-  };
+
   return (
     <div className="pending-comment">
       <div className="pending-comment__icons">
         <Icon
           iconSrc="/images/user-2.png"
-          label={username(comment)}
+          label={createUsername(comment.email)}
           iconStyle={styles.iconUser}
         />
         <Icon

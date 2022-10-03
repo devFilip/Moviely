@@ -1,4 +1,4 @@
-import { Action, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { CommentModel } from "../../../models/CommentModel";
 
 const commentsSlice = createSlice({
