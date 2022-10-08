@@ -1,9 +1,9 @@
 import { CommentModel } from "../../../../models/CommentModel";
 import "./Comment.css";
 interface Comment {
-  comment: CommentModel;
+  item: CommentModel;
 }
-const Comment: React.FC<Comment> = ({ comment }) => {
+const Comment: React.FC<Comment> = ({ item: comment }) => {
   return (
     <div className="comment">
       <div className="comment__user">
