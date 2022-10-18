@@ -6,6 +6,7 @@ import DropDownList from "../../atoms/DropDownList/DropDownList";
 import RadioButton from "../../atoms/RadioButton/RadioButton";
 import FilterSubmit from "../../atoms/FilterSubmit/FilterSubmit";
 import "./FilterForm.css";
+import constants from "../../../../utils/constants";
 
 interface FilterForm {
   role: string;
@@ -34,6 +35,7 @@ const FilterForm: React.FC<FilterForm> = ({ role, onFilter }) => {
     const inputCopy: any = { ...input };
     onFilter(inputCopy);
   };
+
   return (
     <form className="filter-form" onSubmit={(e) => handleSubmit(e)}>
       <div className="filter-form__top">
@@ -46,7 +48,11 @@ const FilterForm: React.FC<FilterForm> = ({ role, onFilter }) => {
           />
         </div>
         <div className="filter-form__width">
-          <DropDownList name="genre" onChange={handleChange} />
+          <DropDownList
+            name="genre"
+            options={constants.optionsGenre}
+            onChange={handleChange}
+          />
         </div>
         <div className="filter-form__width">
           <Input

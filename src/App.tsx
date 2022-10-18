@@ -5,9 +5,12 @@ import HomePage from "./components/pages/HomePage/HomePage";
 import NotFoundPage from "./components/pages/NotFoundPage/NotFoundPage";
 import PendingCommentsPage from "./components/pages/PendingCommentsPage/PendingCommentsPage";
 import PendingUsersPage from "./components/pages/PendingUsersPage/PendingUsersPage";
+import RegisterPage from "./components/pages/RegisterPage/RegisterPage";
 import NavBar from "./components/UI/organisms/NavBar/NavBar";
 
 function App() {
+  const user = JSON.parse(localStorage.getItem("persist:user") as string);
+  if (Object.keys(JSON.parse(user.user)).length === 0) return <RegisterPage />;
   return (
     <div className="App">
       <NavBar role="admin" />

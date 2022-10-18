@@ -17,6 +17,7 @@ import { Movie } from "../../../models/MovieModel";
 import { getFormObj } from "../../../utils/getFormData";
 import { v4 } from "uuid";
 import Loader from "../Loader/Loader";
+import constants from "../../../utils/constants";
 const Joi = require("joi-browser");
 
 interface formInput {
@@ -164,6 +165,7 @@ const FormPage = () => {
             />
             <DropDownList
               value={form.genre}
+              options={constants.optionsGenre}
               name="genre"
               error={formErrors.genre}
               onChange={(e) => handleChange(e)}
